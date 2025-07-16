@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Upload</title>
+  <link rel="stylesheet" href="style.css" />
+<style>
+  :root {
+    --primary-color: #626262; 
+    /* --background-color: rgb(214, 214, 214);  */
+    --background-color: #9db383; /* Set a light grey background */
+    --secondary-color: #9db383; /* Set green as the secondary color */
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+  }
+
+  .admin-container {
+    max-width: 800px;
+    background-color: white;
+    margin: 4rem auto;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-top: 6px solid var(--primary-color);
+  }
+
+  h1, h2 {
+    color: var(--primary-color);
+    text-align: center;
+  }
+
+  form, section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  label {
+    font-weight: bold;
+    color: #333;
+  }
+
+  input[type="text"],
+  input[type="file"],
+  select {
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 0.75rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  button:hover {
+    background: var(--secondary-color);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  #deleteSection {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px dashed #aaa;
+  }
+
+  header,
+  footer {
+    background-color: white;
+  }
+
+  footer {
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid #ccc;
+  }
+
+  .contact-icons a {
+    margin: 0 0.5rem;
+  }
+
+  .logo-img {
+    display: block;
+    max-width: 120px;
+    margin: 1rem auto;
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  .nav-menu {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 0.5rem 1rem;
+    display: block;
+    text-decoration: none;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  .logo-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* === Additional styling for vertical spacing and clean layout === */
+  form label {
+    display: block;
+    margin-top: 1rem;
+  }
+
+  form input,
+  form select,
+  form button {
+    display: block;
+    width: 100%;
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+  }
+
+  form button {
+    margin-top: 1.5rem;
+  }
+</style>
+
+</head>
+<body id="admin-page" data-page="admin">
+
+  
+
+  <main>
+  <div class="admin-container">
+    <h1>Upload New Artwork</h1>
+
+    <form id="uploadForm">
+      <label for="pageSelect">Choose Page:</label>
+      <select id="pageSelect" required>
+        <option value="">-- Select Page --</option>
+        <option value="gallery">Gallery</option>
+        <option value="digital">Digital</option>
+        <option value="marker">Marker</option>
+        <option value="ink">Ink</option>
+        <option value="pencil">Pencil</option>
+        <option value="watercolour">Watercolour</option>
+      </select>
+
+      <label for="title">Title (name):</label>
+      <input type="text" id="title" required />
+
+      <div id="galleryFields" class="hidden">
+        <label for="description">Description:</label>
+        <input type="text" id="description" />
+
+        <label for="size">Size:</label>
+        <input type="text" id="size" />
+
+        <label for="price">Price:</label>
+        <input type="text" id="price" />
+
+        <label for="mainImage">Main Image (painting):</label>
+        <input type="file" id="mainImage" accept="image/*" />
+
+        <label for="mockupImage">Mockup Image:</label>
+        <input type="file" id="mockupImage" accept="image/*" />
+
+        <label for="croppedImage">Cropped Mockup:</label>
+        <input type="file" id="croppedImage" accept="image/*" />
+      </div>
+
+      <div id="otherPageFields" class="hidden">
+        <label for="singleImage">Upload Image:</label>
+        <input type="file" id="singleImage" accept="image/*" />
+      </div>
+
+      <button type="submit">Upload</button>
+    </form>
+
+    <section id="deleteSection">
+      <h2>Delete Artwork</h2>
+      <label for="deletePaintingSelect">Select artwork to delete:</label>
+      <select id="deletePaintingSelect">
+        <option value="">-- Select Artwork --</option>
+      </select>
+      <button id="deletePaintingBtn">Delete Selected Artwork</button>
+    </section>
+  </div>
+</main>
+
+
+
+  <script>
+    const pageSelect = document.getElementById("pageSelect");
+    const galleryFields = document.getElementById("galleryFields");
+    const otherPageFields = document.getElementById("otherPageFields");
+    const titleInput = document.getElementById("title");
+
+    pageSelect.addEventListener("change", () => {
+      const isGallery = pageSelect.value === "gallery";
+
+      galleryFields.classList.toggle("hidden", !isGallery);
+      otherPageFields.classList.toggle("hidden", isGallery);
+
+      document.getElementById("description").required = isGallery;
+      document.getElementById("size").required = isGallery;
+      document.getElementById("price").required = isGallery;
+      document.getElementById("mainImage").required = isGallery;
+      document.getElementById("mockupImage").required = isGallery;
+      document.getElementById("croppedImage").required = isGallery;
+      document.getElementById("singleImage").required = !isGallery;
+    });
+
+    document.getElementById("uploadForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const selectedPage = pageSelect.value.trim();
+      const title = titleInput.value.trim();
+
+      if (!selectedPage || !title) {
+        alert("Page and title are required.");
+        return;
+      }
+
+      if (selectedPage === "gallery") {
+        const description = document.getElementById("description").value.trim();
+        const size = document.getElementById("size").value.trim();
+        const price = document.getElementById("price").value.trim();
+        const mainFile = document.getElementById("mainImage").files[0];
+        const mockupFile = document.getElementById("mockupImage").files[0];
+        const croppedFile = document.getElementById("croppedImage").files[0];
+
+        const readerPromises = [mainFile, mockupFile, croppedFile].map(file => new Promise(resolve => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.readAsDataURL(file);
+        }));
+
+        Promise.all(readerPromises).then(([mainURL, mockupURL, croppedURL]) => {
+          const stored = JSON.parse(localStorage.getItem("uploadedPaintings") || "[]");
+
+          stored.push({
+            page: selectedPage,
+            title,
+            description,
+            size,
+            price,
+            main: mainURL,
+            mockup: mockupURL,
+            cropped: croppedURL,
+            group: `group-upload-${Date.now()}`
+          });
+
+          localStorage.setItem("uploadedPaintings", JSON.stringify(stored));
+          alert("Artwork uploaded!");
+          e.target.reset();
+          loadDeleteOptions();
+        });
+      } else {
+        const singleFile = document.getElementById("singleImage").files[0];
+        const reader = new FileReader();
+        reader.onload = () => {
+          const stored = JSON.parse(localStorage.getItem("uploadedPaintings") || "[]");
+
+          stored.push({
+            page: selectedPage,
+            title,
+            main: reader.result,
+            group: `group-upload-${Date.now()}`
+          });
+
+          localStorage.setItem("uploadedPaintings", JSON.stringify(stored));
+          alert("Artwork uploaded!");
+          e.target.reset();
+          loadDeleteOptions();
+        };
+        reader.readAsDataURL(singleFile);
+      }
+    });
+
+    function deletePaintingByTitle(title) {
+      let paintings = JSON.parse(localStorage.getItem("uploadedPaintings") || "[]");
+      const updated = paintings.filter(p => p.title !== title);
+      localStorage.setItem("uploadedPaintings", JSON.stringify(updated));
+      alert(`Deleted artwork titled "${title}".`);
+      loadDeleteOptions();
+    }
+
+    function loadDeleteOptions() {
+      const select = document.getElementById("deletePaintingSelect");
+      const stored = JSON.parse(localStorage.getItem("uploadedPaintings") || "[]");
+      select.innerHTML = `<option value="">-- Select Artwork --</option>`;
+      stored.forEach(p => {
+        const opt = document.createElement("option");
+        opt.value = p.title;
+        opt.textContent = `${p.title} (${p.page})`;
+        select.appendChild(opt);
+      });
+    }
+
+    document.getElementById("deletePaintingBtn").addEventListener("click", () => {
+      const selected = document.getElementById("deletePaintingSelect").value;
+      if (selected && confirm(`Delete "${selected}"?`)) {
+        deletePaintingByTitle(selected);
+      }
+    });
+
+    loadDeleteOptions();
+  </script>
+</body>
+</html>

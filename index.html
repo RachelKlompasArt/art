@@ -1,104 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Jewish Art | Paintings, Drawings and Pictures</title>
-    
-    <meta name="description" content="Discover beautiful Jewish art including  paintings, drawings, and unique artwork that inspire and uplift.">
-    <meta name="keywords" content="Jewish art, paintings, drawings, pictures, Judaica art, religious paintings, Jewish drawings, spiritual paintings">
-    <meta name="author" content="Rachel Klompas">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta property="og:title" content="Jewish Art | Paintings, Drawings, and Pictures">
-    <meta property="og:description" content="Discover beautiful Jewish art including paintings, drawings, and unique artwork that inspire and uplift.">
-    <meta property="og:image" content="Paintings/logo.webp">
-    <meta property="og:url" content="https://rachelklompasart.github.io/art/index.html">
-    <meta property="og:type" content="website">
+  <title>Jewish Art | Paintings, Drawings and Pictures</title>
 
+  <meta name="description" content="Discover beautiful Jewish art including  paintings, drawings, and unique artwork that inspire and uplift.">
+  <meta name="keywords" content="Jewish art, paintings, drawings, pictures, Judaica art, religious paintings, Jewish drawings, spiritual paintings">
+  <meta name="author" content="Rachel Klompas">
+
+  <link rel="stylesheet" href="style.css" />
+
+  <meta property="og:title" content="Jewish Art | Paintings, Drawings, and Pictures">
+  <meta property="og:description" content="Discover beautiful Jewish art including paintings, drawings, and unique artwork that inspire and uplift.">
+  <meta property="og:image" content="Paintings/logo.webp">
+  <meta property="og:url" content="https://rachelklompasart.github.io/art/index.html">
+  <meta property="og:type" content="website">
+
+  <style>
+    /* Popup styling */
+    #circle-popup {
+      position: fixed;
+      top: -100px;
+      right: 40px;
+      background-color: #626262; 
+      color: #9db383;
+      padding: 16px 22px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 500;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      transition: top 1s ease, opacity 0.6s ease;
+      animation: dropDown 1.2s forwards 0.5s;
+    }
+
+    #circle-popup a {
+      color: #9db383;
+      text-decoration: none;
+      display: block;
+    }
+
+    #circle-popup:hover {
+      background-color: #484848; /* Slightly darker on hover */
+    }
+
+    @keyframes dropDown {
+      to {
+        top: 80px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      #circle-popup {
+        right: 20px;
+        font-size: 14px;
+        padding: 12px 18px;
+      }
+    }
+  </style>
 </head>
-<body id = "index-page">
-    <header>
-            <nav class="navbar">
-              <div class="nav-left">
-                <div class="dropdown">
-                  <button class="nav-menu">Explore</button>
-                  <div class="dropdown-content">
-                    <a href="index.html">Home</a>
-                    <a href="gallery.html">Gallery</a>
-                    <a href="#footer">Contact</a>
-                  </div>
-                </div>
-              </div>
-          
-              <div class="nav-right">
-                <div class="dropdown">
-                  <button class="nav-menu">Portfolio</button>
-                  <div class="dropdown-content">
-                    <a href="digital.html">Digital</a>
-                    <a href="pencil.html">Pencil</a>
-                    <a href="ink.html">Ink</a>
-                    <a href="marker.html">Marker</a>
-                    <a href="watercolour.html">Water Colour</a>
-                  </div>
-                </div>
-              </div>
-            </nav>
-          
-        <a href="https://rachelklompasart.github.io/art/index.html" class="logo-link">
-            <img src="Paintings/logo.webp" alt="Logo" class="logo-img" />
-        </a>
-        </nav>
 
-    </header>
-    
-    <main>
-     <div id="popup">
-         <a href = "gallery.html">Click here to discover the new painting</a>
-    </div>
-        <div class="main-container">
-            <div class="slideshow-container" onclick="window.location.href='gallery.html';">
-                <div class="slideshow slideshow1">
-                    <img class="slide" src="Paintings/leaves Mockup.webp" alt="Abstract mockup">
-                    <img class="slide" src="Paintings/black and white water mock up.webp" alt="black and white water mockup">
-                    <img class="slide" src="Paintings/blue boys mockup.webp" alt="blue boys mock up">
-                    <img class="slide" src="Paintings/Roses mockup.webp" alt="Roses">
-                    <img class="slide" src="Paintings/Shtetle mockup.webp" alt="Shtetle">
-                    <img class="slide" src="Paintings/textured forest mockup.webp" alt="textured forest">
-                    <img class="slide" src="Paintings/waterfall mockup.webp" alt="waterfall">
-                    <img class="slide" src="Paintings/Akeida Mockup.webp" alt="Akeida">
-                </div>
-    
-                <div class="slideshow slideshow2">
-                    <img class="slide" src="Paintings/leaves Mockup cropped.webp" alt="Slide 1">
-                    <img class="slide" src="Paintings/black and white water cropped mockup.webp" alt="black and white water cropped mockup">
-                    <img class="slide" src="Paintings/blue boys cropped mockup.webp" alt="blue boys cropped mock up">
-                    <img class="slide" src="Paintings/roses cropped mockup.webp" alt="Roses">
-                    <img class="slide" src="Paintings/Shtetle cropped mockup.webp" alt="Shtetle">
-                    <img class="slide" src="Paintings/textured forest cropped mockup.webp" alt="textured forest">
-                    <img class="slide" src="Paintings/waterfall cropped mockup.webp" alt="Slide 3">
-                    <img class="slide" src="Paintings/Akeida cropped Mockup.webp" alt="Akeida">
-                </div>
-    
-                <div class="slideshow slideshow3">
-                    <img class="slide" src="Paintings/leaves Mockup.webp" alt="Abstract mockup">
-                    <img class="slide" src="Paintings/black and white water mock up.webp" alt="black and white water mockup">
-                    <img class="slide" src="Paintings/blue boys mockup.webp" alt="blue boys mock up">
-                    <img class="slide" src="Paintings/Roses mockup.webp" alt="Roses">
-                    <img class="slide" src="Paintings/Shtetle mockup.webp" alt="Shtetle">
-                    <img class="slide" src="Paintings/textured forest mockup.webp" alt="textured forest">
-                    <img class="slide" src="Paintings/waterfall mockup.webp" alt="waterfall">
-                    <img class="slide" src="Paintings/Akeida Mockup.webp" alt="Akeida">
-                </div>
-            </div>
+<body id="index-page">
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <div class="dropdown">
+          <button class="nav-menu">Explore</button>
+          <div class="dropdown-content">
+            <a href="index.html">Home</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="#footer">Contact</a>
+          </div>
         </div>
-    </main>
-    
-      
+      </div>
 
+      <div class="nav-right">
+        <div class="dropdown">
+          <button class="nav-menu">Portfolio</button>
+          <div class="dropdown-content">
+            <a href="digital.html">Digital</a>
+            <a href="pencil.html">Pencil</a>
+            <a href="ink.html">Ink</a>
+            <a href="marker.html">Marker</a>
+            <a href="watercolour.html">Water Colour</a>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-    <footer id = "footer">
+    <a href="index.html" class="logo-link">
+      <img src="Paintings/logo.webp" alt="Logo" class="logo-img" />
+    </a>
+  </header>
+
+  <main>
+    <!-- Elegant modern popup -->
+    <div id="circle-popup">
+      <a href="gallery.html">Click here to see the new painting</a>
+    </div>
+
+    <div class="main-container">
+      <div class="slideshow-container" onclick="window.location.href='gallery.html';">
+        <div class="slideshow slideshow1">
+          <img class="slide" src="Paintings/leaves Mockup.webp" alt="Abstract mockup">
+          <img class="slide" src="Paintings/black and white water mock up.webp" alt="black and white water mockup">
+          <img class="slide" src="Paintings/blue boys mockup.webp" alt="blue boys mock up">
+          <img class="slide" src="Paintings/Roses mockup.webp" alt="Roses">
+          <img class="slide" src="Paintings/Shtetle mockup.webp" alt="Shtetle">
+          <img class="slide" src="Paintings/textured forest mockup.webp" alt="textured forest">
+          <img class="slide" src="Paintings/waterfall mockup.webp" alt="waterfall">
+          <img class="slide" src="Paintings/Akeida Mockup.webp" alt="Akeida">
+        </div>
+
+        <div class="slideshow slideshow2">
+          <img class="slide" src="Paintings/leaves Mockup cropped.webp" alt="Slide 1">
+          <img class="slide" src="Paintings/black and white water cropped mockup.webp" alt="black and white water cropped mockup">
+          <img class="slide" src="Paintings/blue boys cropped mockup.webp" alt="blue boys cropped mock up">
+          <img class="slide" src="Paintings/roses cropped mockup.webp" alt="Roses">
+          <img class="slide" src="Paintings/Shtetle cropped mockup.webp" alt="Shtetle">
+          <img class="slide" src="Paintings/textured forest cropped mockup.webp" alt="textured forest">
+          <img class="slide" src="Paintings/waterfall cropped mockup.webp" alt="Slide 3">
+          <img class="slide" src="Paintings/Akeida cropped Mockup.webp" alt="Akeida">
+        </div>
+
+        <div class="slideshow slideshow3">
+          <img class="slide" src="Paintings/leaves Mockup.webp" alt="Abstract mockup">
+          <img class="slide" src="Paintings/black and white water mock up.webp" alt="black and white water mockup">
+          <img class="slide" src="Paintings/blue boys mockup.webp" alt="blue boys mock up">
+          <img class="slide" src="Paintings/Roses mockup.webp" alt="Roses">
+          <img class="slide" src="Paintings/Shtetle mockup.webp" alt="Shtetle">
+          <img class="slide" src="Paintings/textured forest mockup.webp" alt="textured forest">
+          <img class="slide" src="Paintings/waterfall mockup.webp" alt="waterfall">
+          <img class="slide" src="Paintings/Akeida Mockup.webp" alt="Akeida">
+        </div>
+      </div>
+    </div>
+  </main>
+
+<footer id="footer">
         <div class="contact-icons">
         <a href="mailto:rachelklompasart@gmail.com">
             <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 32 32" fill="none">
@@ -132,6 +173,18 @@
         <p>Contact us for sales and commission pieces</p>
         <p class="copyright">&copy; 2025 Rachel Klompas Art. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
+
+
+  <script src="script.js"></script>
+  <script>
+    // Auto-hide the popup after 8 seconds
+    setTimeout(() => {
+      const popup = document.getElementById('circle-popup');
+      if (popup) {
+        popup.style.opacity = 0;
+        setTimeout(() => popup.remove(), 600);
+      }
+    }, 8000);
+  </script>
 </body>
 </html>
