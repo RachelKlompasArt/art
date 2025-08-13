@@ -24,7 +24,8 @@ const imageGroups = {
   group7: ['Paintings/waterfall.webp', 'Paintings/waterfall cropped mockup.webp', 'Paintings/waterfall mockup.webp'],
   group8: ['Paintings/Akeida 1.webp', 'Paintings/Akeida 2.webp', 'Paintings/Akeida cropped Mockup.webp', 'Paintings/Akeida Mockup.webp'],
   group9: ['Digital/Ballgown.webp', 'Digital/Face_Paint.webp', 'Digital/Fox.webp', 'Digital/Jade.webp', 'Digital/Light.webp', 'Digital/Raven.webp', 'Digital/Rose.webp', 'Digital/Sunburst.webp', 'Digital/Yerushalayim.webp'],
-  group10: ['Paintings/Leaves.webp', 'Paintings/leaves Mockup cropped.webp', 'Paintings/leaves Mockup.webp']
+  group10: ['Paintings/Leaves.webp', 'Paintings/leaves Mockup cropped.webp', 'Paintings/leaves Mockup.webp'],
+  group11: ['Paintings/peacefull.webp', 'Paintings/peacefull mockup cropped.webp', 'Paintings/peacefull.webp']
 };
 
 // Load uploaded paintings from localStorage and add to imageGroups
