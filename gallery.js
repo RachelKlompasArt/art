@@ -167,11 +167,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // WhatsApp and Email Submit actions
+// WhatsApp and Email Submit actions
     if(waBtn) {
         waBtn.addEventListener('click', () => {
             const msg = messageBox ? messageBox.value : '';
-            const phoneNumber = "+27768606099"; // <--- PUT YOUR NUMBER HERE
+            const phoneNumber = "+27768606099"; 
+            
+            // Send the click event to Google Analytics
+            if (typeof gtag === 'function') {
+                gtag('event', 'generate_lead', { method: 'WhatsApp' });
+            }
+
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`, '_blank');
         });
     }
@@ -179,7 +185,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if(emailBtn) {
         emailBtn.addEventListener('click', () => {
             const msg = messageBox ? messageBox.value : '';
-            const emailAddress = "rachel@rachelklompas.com"; // <--- PUT YOUR EMAIL HERE
+            const emailAddress = "rachel@rachelklompas.com"; 
+            
+            // Send the click event to Google Analytics
+            if (typeof gtag === 'function') {
+                gtag('event', 'generate_lead', { method: 'Email' });
+            }
+
             window.location.href = `mailto:${emailAddress}?subject=Website Inquiry&body=${encodeURIComponent(msg)}`;
         });
     }
