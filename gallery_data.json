@@ -93,8 +93,8 @@
         "coverImage": "./Paintings/roses mockup.webp",
         "carouselImages": [
             "./Paintings/roses cropped mockup.webp",
-            "./Paintings/Roses mockup.webp",
-            "./Paintings/Roses.webp"
+            "./Paintings/roses mockup.webp",
+            "./Paintings/roses.webp"
         ]
     },
     {
@@ -106,7 +106,9 @@
         "desc": "Oil Paint on Premium Cotton Stretched Canvas",
         "coverImage": "./Paintings/Shtetle cropped mockup.webp",
         "carouselImages": [
-            "./Paintings/Shtetle cropped mockup.webp"
+            "./Paintings/Shtetle cropped mockup.webp",
+            "./Paintings/Shtetle mockup.webp",
+            "./Paintings/Shtetle.webp"
         ]
     },
     {
