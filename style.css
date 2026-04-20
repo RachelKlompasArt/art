@@ -682,3 +682,35 @@ h1, h2, h3, h4, h5, h6 {
         right: 0 !important;
     }
 }
+/* =========================================
+   SAFARI TASKBAR OVERLAP FIXES
+   ========================================= */
+
+/* 1. Lock the Modal to all 4 corners so Safari cannot push it down */
+.modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important; /* Forces it to the absolute bottom of the screen */
+    height: 100dvh !important;
+    width: 100vw !important;
+    z-index: 9999 !important;
+}
+
+/* 2. Push the content UP to clear the Safari Taskbar and Home Swipe Bar */
+@media (max-width: 768px) {
+    .modal-plaque, 
+    .museum-plaque {
+        /* Adds your normal padding + extra space for Apple's bottom UI */
+        padding-bottom: calc(2rem + env(safe-area-inset-bottom, 40px)) !important;
+    }
+}
+
+/* 3. The iOS Body Scroll Lock Class (Used in Step 2) */
+body.modal-open {
+    overflow: hidden !important;
+    position: fixed !important; /* This completely disables background scrolling on iOS */
+    width: 100% !important;
+    height: 100dvh !important;
+}

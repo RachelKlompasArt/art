@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden'; 
+                document.body.classList.add('modal-open');
             };
 
             // Modal Click Listeners (Must be attached AFTER gallery is built)
@@ -121,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtn.addEventListener('click', () => {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto'; 
+        document.body.classList.remove('modal-open');
     });
 
 
