@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide greeting after 10 seconds
         setTimeout(() => {
             if(contactGreeting) contactGreeting.classList.remove('show');
-        }, 10000);
+        }, 5000);
     }, 3000);
     
     // Open popup

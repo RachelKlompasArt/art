@@ -630,15 +630,18 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
     
-    /* 2. THE DESCRIPTIVE PLAQUE FIX */
+/* 2. THE DESCRIPTIVE PLAQUE FIX */
     .art-panel {
         height: 100dvh !important; 
-        padding: 2rem 0 !important; 
+        /* ADDED: Push everything up slightly from the bottom toolbar */
+        padding: 2rem 0 4rem 0 !important; 
+        box-sizing: border-box !important;
     }
 
     .art-bounding-box {
         height: 100% !important;
-        justify-content: center !important;
+        /* CHANGED: Switched from center to flex-start so content starts at top */
+        justify-content: flex-start !important;
         gap: 15px !important; 
     }
 
