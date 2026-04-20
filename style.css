@@ -5,6 +5,13 @@
     --brand-grey: #626262; 
 }
 
+/* Force iOS to respect your Mahogany/Brand colors on all text and links */
+a, button, p, h1, h2, span, div {
+    color: inherit;
+    text-decoration: none;
+    -webkit-text-fill-color: initial; /* Overrides iOS specific text fills */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -469,6 +476,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--brand-green); font-size: 60px; 
     z-index: 10000; cursor: pointer;
 }
+
 /* =========================================
    MOBILE MODAL OVERLAP FIX (< 768px)
    ========================================= */
@@ -606,4 +614,68 @@ h1, h2, h3, h4, h5, h6 {
     color: #888;
     font-style: italic;
     font-size: 0.8em;
+}
+/* =========================================
+   MOBILE FIXES (Phones < 768px) - NUCLEAR VERSION
+   ========================================= */
+
+/* 1. THE ARROW EMOJI FIX */
+.arrow, 
+.index-body .panel-content .arrow {
+    color: transparent !important; 
+    text-shadow: 0 0 0 var(--brand-green) !important; 
+    -webkit-text-fill-color: transparent !important; 
+    font-variant-emoji: text !important;
+}
+
+@media (max-width: 768px) {
+    
+    /* 2. THE DESCRIPTIVE PLAQUE FIX */
+    .art-panel {
+        height: 100dvh !important; 
+        padding: 2rem 0 !important; 
+    }
+
+    .art-bounding-box {
+        height: 100% !important;
+        justify-content: center !important;
+        gap: 15px !important; 
+    }
+
+    .art-image {
+        max-height: 45vh !important; 
+        width: auto !important;
+    }
+
+    .museum-plaque {
+        width: 100% !important;
+        max-height: 35vh !important; 
+        overflow-y: auto !important; 
+        -webkit-overflow-scrolling: touch !important; 
+        padding: 1.5rem !important; 
+    }
+    
+    .museum-plaque h2 {
+        font-size: 2rem !important; 
+        margin-bottom: 0.5rem !important;
+    }
+
+    .museum-plaque p {
+        font-size: 1.1rem !important;
+    }
+
+    /* 3. THE "HI..." CONTACT GREETING FIX */
+    .contact-greeting {
+        white-space: normal !important; 
+        max-width: 65vw !important; 
+        right: 70px !important; 
+        bottom: 15px !important;
+        text-align: right !important; 
+    }
+    
+    .contact-popup {
+        width: 85vw !important; 
+        max-width: 320px !important;
+        right: 0 !important;
+    }
 }
