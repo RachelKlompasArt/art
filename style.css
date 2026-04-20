@@ -1,561 +1,609 @@
-/* General Styles */
 :root {
-    --primary-color: #626262; 
-    --background-color: rgb(214, 214, 214); 
-    --secondary-color: #9db383; /* Set green as the secondary color */
+    --bg-color: #fdfdfd;
+    --text-color: #111111;
+    --brand-green: #9db383;
+    --brand-grey: #626262; 
 }
 
-body {
+* {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--background-color); /* Use background color */
-    color: var(--primary-color);
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-
-/* Main Content */
-main {
-    flex: 1; /* Ensures it takes up all available space */
-    padding: 20px; /* Add some padding for spacing */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Ensure the content fits between header and footer */
-}
-
-header {
-    background-color: var(--secondary-color);
-    padding: 3% 3%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    height: 8%;
-    overflow: visible;
+html, body {
     width: 100%;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden; 
 }
 
-/* Centered logo container */
-.logo-link {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    height: 100%;
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+    color: var(--brand-green);
+}
+
+/* =========================================
+   GLOBAL FIXED BACKGROUND (ALL PAGES)
+   ========================================= */
+.global-fixed-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 0; /* Sits at the very back of every page */
+    display: flex;
+    align-items: center; justify-content: center;
+    background-image: url('./Paintings/background.jpg'); /* KEEP YOUR FILE NAME HERE */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* =========================================
+   GLOBAL BACK BUTTON
+   ========================================= */
+.back-home-btn {
+    position: fixed;
+    top: 30px;
+    left: 40px;
+    
+    /* THE FIXES: */
+    z-index: 9000; /* Bumped WAY up to bypass the 3D viewport and Gallery containers */
+    pointer-events: auto; /* Strictly forces the browser to register clicks here */
+    cursor: pointer;
+    
+    text-decoration: none;
     display: flex;
     align-items: center;
+    gap: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--brand-green);
+    font-weight: 700;
+    letter-spacing: 2px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover Effect */
+.back-home-btn:hover {
+    color: var(--brand-green);
+    transform: translateX(-5px); 
+}
+
+/* Mobile sizing */
+@media (max-width: 768px) {
+    .back-home-btn {
+        top: 20px;
+        left: 20px;
+        font-size: 1rem;
+    }
+}
+
+/* =========================================
+   GALLERY PAGE STYLES
+   ========================================= */
+#gallery-container {
+    position: relative;
+    z-index: 1; /* Ensures the art scrolls ON TOP of the fixed image */
+    display: flex; flex-direction: column; width: 100%; padding: 50px 0; 
+}
+
+.bg-watermark {
+    font-size: 16vw; 
+    letter-spacing: 5px;
+    opacity: 0.05; 
+    color: var(--brand-green);
+    font-family: 'Cinzel', serif;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.bg-title { 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    font-size: 16vw; 
+    letter-spacing: 5px; 
+    opacity: 0.1; 
+    color: var(--brand-grey); 
+    font-family: 'Cinzel', serif; 
+    z-index: 0; 
+    white-space: nowrap; 
+    pointer-events: none; 
+    user-select: none; 
+}
+
+.art-panel { position: relative; width: 100vw; min-height: 90vh; display: flex; align-items: center; justify-content: center; padding: 4rem 0; }
+.art-bounding-box { display: flex; align-items: center; justify-content: space-between; width: 95%; max-width: 1600px; padding: 0 2rem; }
+.art-bounding-box.reverse { flex-direction: row-reverse; }
+
+.image-carousel { 
+    position: relative; 
+    z-index: 2; 
+    width: 55%; 
+    height: 80vh; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.art-image { max-height: 100%; max-width: 100%; object-fit: contain; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); border-radius: 4px; cursor: pointer; transition: transform 0.3s ease; }
+.art-image:hover { transform: scale(1.02); }
+
+.museum-plaque { 
+    position: relative;
+    z-index: 2; 
+    width: 35%; 
+    background: rgba(255,255,255,0.9); 
+    border-left: 4px solid var(--brand-green); 
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); 
+    padding: 4rem; 
+    backdrop-filter: blur(5px); 
+}
+.museum-plaque h2 { font-family: 'Cinzel', serif; color: var(--brand-green); margin-bottom: 1rem; font-size: 3rem; }
+.museum-plaque p { font-family: 'Montserrat', sans-serif; color: var(--brand-green); margin: 0; font-size: 1.5rem; font-weight: 500; }
+
+/* --- UNIFIED NAVIGATION ARROWS --- */
+.nav-arrow {
+    background-color: var(--brand-green);
+    color: var(--brand-grey);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 30px;
+    transition: all 0.3s ease;
+    user-select: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15); 
+}
+.nav-arrow:hover {
+    background-color: var(--brand-grey);
+    color: var(--brand-green);
+    transform: scale(1.05); 
+}
+.carousel-btn { position: absolute; top: 50%; z-index: 5; opacity: 0; }
+.image-carousel:hover .carousel-btn { opacity: 1; }
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }
+
+@media (max-width: 1024px) {
+    .art-bounding-box, .art-bounding-box.reverse { flex-direction: column; gap: 2rem; }
+    .image-carousel, .museum-plaque { width: 100%; height: auto; }
+    .art-image { max-height: 60vh; }
+    .museum-plaque { border-left: none; border-top: 4px solid var(--brand-green); padding: 2.5rem; }
+}
+
+/* =========================================
+   NEW FULL-PAGE MODAL
+   ========================================= */
+.modal { 
+    display: none; position: fixed; z-index: 9999; 
+    left: 0; top: 0; width: 100vw; height: 100vh; 
+    background-color: var(--bg-color); 
+    overflow: hidden; 
+}
+.modal-bg-title {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-size: 18vw; font-family: 'Cinzel', serif; color: var(--brand-green);
+    opacity: 0.05; z-index: 0; pointer-events: none; white-space: nowrap;
+}
+.modal-layout { display: flex; width: 100%; height: 100%; position: relative; z-index: 1; }
+.modal-image-container { 
+    width: 65%; height: 100%; display: flex; 
+    justify-content: center; align-items: center; 
+    padding: 4rem; position: relative;
+}
+#modalImage { max-width: 100%; max-height: 90vh; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2); }
+.modal-plaque { 
+    width: 35%; height: 100%; display: flex; flex-direction: column; 
+    justify-content: center; padding: 4rem 6rem; 
+    background: url('./Paintings/background.jpg'); border-left: 4px solid var(--brand-green); 
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+}
+.modal-plaque h2 { font-size: 3.5rem; margin-bottom: 1.5rem; }
+.modal-plaque p { font-size: 1.2rem; margin-bottom: 1rem; color: var(--text-color); font-weight: 500; }
+.close { position: absolute; top: 30px; right: 40px; color: var(--brand-green); font-size: 60px; z-index: 10000; cursor: pointer; }
+.modal-nav { 
+    position: absolute; top: 50%; left: 0; width: 100%; 
+    display: flex; justify-content: space-between; 
+    transform: translateY(-50%); padding: 0 40px; z-index: 10; pointer-events: none; 
+}
+.modal-nav .nav-arrow { pointer-events: auto; }
+
+@media (max-width: 1024px) {
+    .modal { overflow-y: auto; }
+    .modal-layout { flex-direction: column; height: auto; min-height: 100vh; }
+    .modal-image-container { width: 100%; height: 60vh; padding: 4rem 1rem 2rem 1rem; }
+    .modal-plaque { 
+        width: 100%; height: auto; border-left: none; border-top: 4px solid var(--brand-green); 
+        padding: 3rem 2rem; align-items: center; text-align: center; 
+    }
+    .modal-plaque h2 { font-size: 2.5rem; }
+    .modal-bg-title { font-size: 26vw; top: 30%; }
+    .close { 
+        top: 15px; right: 20px; font-size: 50px; background: rgba(253, 253, 253, 0.7); 
+        border-radius: 50%; width: 50px; height: 50px; display: flex; 
+        justify-content: center; align-items: center; line-height: 1; 
+    }
+    .modal-nav { padding: 0 10px; }
+}
+
+/* =========================================
+   INDEX PAGE STYLES (STRICTLY ISOLATED)
+   ========================================= */
+.index-body { margin: 0; overflow: hidden !important; height: 100vh !important; }
+.index-body .split-container { position: relative; width: 100vw; height: 100vh; background-color: transparent; }
+.index-body .split-panel { position: absolute; display: block; text-decoration: none; cursor: pointer; }
+.index-body .design-panel { top: 0; left: 0; width: 50%; height: 100vh; z-index: 1; }
+.index-body .art-panel { top: 0; right: 0; width: 50%; height: 100vh; z-index: 1; }
+
+.index-body .panel-content { position: absolute; pointer-events: none; opacity: 0.5; white-space: nowrap; }
+.index-body .main-word-row { display: flex; align-items: center; gap: 1.5vw; }
+.index-body .text-stack { display: flex; flex-direction: column; align-items: flex-end; position: relative; }
+
+.index-body .panel-content h2 { font-family: 'Cinzel', serif; color: #9c9c9c; margin: 0; line-height: 0.9; letter-spacing: 5px; position: relative; z-index: 1; transition: color 0.3s ease; }
+.index-body .panel-content h3 { 
+    font-family: 'Pacifico', cursive; 
+    font-weight: 500; 
+    letter-spacing: 4px; 
+    text-transform: lowercase; /* Turns it into "baby letters" */
+    color: var(--brand-grey); 
+    position: relative; 
+    z-index: 2; 
+    transition: color 0.3s ease; /* Pulls the text slightly higher on the page */
+    color: var(--brand-green);
+}
+.index-body .panel-content .arrow { font-family: 'Cinzel', serif; color: var(--brand-grey); transition: color 0.3s ease; }
+
+.index-body .design-panel .panel-content { top: 2%; left: 3vw; }
+.index-body .art-panel .panel-content { bottom: 2%; right: 3vw; }
+
+.index-body .design-panel h2 { font-size: 8vw; }
+.index-body .design-panel h3 { font-size: 4.5vw; margin-top: -5.5vw; margin-right: 2vw; } 
+.index-body .design-panel .arrow { font-size: 8vw; }
+
+.index-body .art-panel h2 { font-size: 12vw; }
+.index-body .art-panel h3 { font-size: 4.5vw; margin-top: -5.5vw; margin-right: 2vw; } 
+.index-body .art-panel .arrow { font-size: 8vw; }
+
+.index-body .design-panel:hover h2, .index-body .design-panel:hover h3, .index-body .design-panel:hover .arrow { color: var(--brand-green); }
+.index-body .art-panel:hover h2, .index-body .art-panel:hover h3, .index-body .art-panel:hover .arrow { color: var(--brand-green); }
+
+.index-body .center-logo { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 280px; pointer-events: none; }
+.index-body .center-logo svg { width: 100%; height: auto; filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.3)); }
+.index-body .center-logo svg path { fill: var(--brand-green); transition: fill 0.3s ease; }
+.index-body .center-logo.hover-design .logo-design-half path { fill: var(--brand-grey); }
+.index-body .center-logo.hover-art .logo-art-half path { fill: var(--brand-grey); }
+
+@media (max-width: 768px) {
+    .index-body .design-panel { top: 0; left: 0; width: 100vw; height: 50vh; }
+    .index-body .art-panel { top: 50vh; left: 0; width: 100vw; height: 50vh; }
+    .index-body .center-logo { width: 180px; }
+    .index-body .design-panel h2 { font-size: 14vw; }
+    .index-body .design-panel h3 { font-size: 3vw; margin-top: -2.5vw; margin-right: 2vw; }
+    .index-body .design-panel .arrow { font-size: 7vw; }
+    .index-body .art-panel h2 { font-size: 26vw; }
+    .index-body .art-panel h3 { font-size: 5vw; margin-top: -4.5vw; margin-right: 3vw; }
+    .index-body .art-panel .arrow { font-size: 12vw; }
+    .index-body .design-panel .panel-content { top: auto; bottom: 100px; left: 50%; transform: translateX(-50%); }
+    .index-body .art-panel .panel-content { bottom: auto; top: 100px; right: auto; left: 50%; transform: translateX(-50%); }
+    .index-body .main-word-row { gap: 3vw; } 
+}
+
+@keyframes slideInLeft { from { transform: translateX(-100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes slideInRight { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+.index-body .design-panel .main-word-row { animation: slideInLeft 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+.index-body .art-panel .main-word-row { animation: slideInRight 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+
+/* =========================================
+   GLOBAL CONTACT WIDGET
+   ========================================= */
+
+/* --- THE ANIMATED GREETING --- */
+.contact-greeting {
+    position: absolute;
+    right: 75px; /* Sits exactly to the left of the 60px bubble */
+    bottom: 10px;
+    background-color: var(--brand-mahogany);
+    color: var(--brand-brass);
+    padding: 12px 20px;
+    border-radius: 20px;
+    border-bottom-right-radius: 4px; /* Gives it a speech-bubble tail */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    pointer-events: none; /* User clicks pass through it */
+    
+    /* Animation initial state */
+    opacity: 0;
+    transform: translateX(30px) scale(0.8);
+    transform-origin: right bottom;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.contact-greeting.show {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+#contact-widget-container { position: fixed; bottom: 30px; right: 30px; z-index: 100000; display: flex; flex-direction: column; align-items: flex-end; pointer-events: none; }
+.contact-bubble { width: 60px; height: 60px; background-color: var(--brand-green); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(0,0,0,0.2); cursor: pointer; pointer-events: auto; transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.5s ease; opacity: 0; transform: translateY(20px); }
+.contact-bubble.show { opacity: 1; transform: translateY(0); }
+.contact-bubble:hover { background-color: #8b8b8b; color: var(--brand-green); border-color: var(--brand-green); }
+.contact-bubble svg { width: 30px; height: 30px; }
+
+.contact-popup { width: 300px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); margin-bottom: 20px; overflow: hidden; pointer-events: auto; display: none; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; }
+.contact-popup.open { display: block; opacity: 1; transform: translateY(0); }
+.contact-header { background-color: var(--brand-green); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+.contact-header h3 { color: var(--brand-grey); font-size: 1rem; margin: 0; letter-spacing: 1px; }
+#close-popup { color: #ffffff; font-size: 24px; cursor: pointer; line-height: 1; }
+.contact-body { padding: 20px; background-color: var(--bg-color); }
+#contact-message { width: 100%; height: 100px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; resize: none; margin-bottom: 15px; }
+#contact-message:focus { outline: none; border-color: var(--brand-green); }
+.contact-actions { display: flex; gap: 10px; }
+.action-btn { flex: 1; padding: 10px; border: none; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-weight: 600; cursor: pointer; color: #ffffff; transition: filter 0.2s ease; }
+.action-btn:hover { filter: brightness(1.1); }
+.wa-btn { background-color: #25D366; } 
+.email-btn { background-color: var(--brand-grey); }
+
+/* =========================================
+   DESIGN PAGE STYLES (3D TUNNEL & MASONRY)
+   ========================================= */
+
+.design-body { margin: 0; overflow-x: hidden; }
+
+/* The 3D Room */
+#viewport {
+    position: fixed; top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    perspective: 800px; /* Creates the 3D depth */
+    overflow: hidden;
+    z-index: 1; 
+}
+
+/* The Camera moving through the room */
+#camera {
+    width: 100%; height: 100%; position: absolute;
+    transform-style: preserve-3d;
+}
+
+/* --- THE TEXT MASK EFFECT --- */
+.project-panel {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 60vh; 
+    height: 60vh;
+    margin-left: -30vh; 
+    margin-top: -30vh;  
+    cursor: pointer;
+    
+    /* ADD/UPDATE: Ensure box-shadow is part of the transition for smoothness */
+    transition: filter 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    
+    opacity: 0; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2); /* Subtle initial shadow */
+    border-radius: 4px;
+}
+
+/* UPDATE: Make the shadow darker and larger on hover */
+.project-panel:hover { 
+    filter: brightness(1.1); /* Optional: a tiny bit of extra glow */
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6); /* MUCH darker and deeper shadow */
+    transform: scale(1.02); /* Slight lift effect */
+}
+
+/* The blurred background layer */
+.blur-bg {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover; background-position: center;
+    
+    /* THE FIX: Removed brightness(0.5) to keep it light */
+    filter: blur(15px) brightness(0.8);
+    
+    border-radius: 4px;
     z-index: 1;
 }
 
-/* Logo image itself */
-.logo-img {
-    max-height: 100%;
-    width: auto;
-    object-fit: contain;
-    cursor: pointer;
+/* The container holding the sharp background */
+.sharp-text {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    background-size: cover; background-position: center;
+    
+    /* These create the text mask */
+    background-clip: text;
+    -webkit-background-clip: text;
+    
+    z-index: 2;
 }
 
-
-/* Navigation Menu */
-nav {
-    display: flex;            
-    justify-content: space-between; 
-    align-items: center;      
-    margin: 0 0;            
-    padding: 0 0; 
-    width: 100%;         
-}
-
-
-.nav-menu {
-    background-color: var(--primary-color); /* Use background color */
-    color: var(--secondary-color);
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-.nav-left {
-    display: flex;
-    align-items: center;
-}
-
-.nav-right {
-    display: flex;
-    align-items: center;
-    padding: 7%;
-}
-
-/* Dropdown Menu */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: var(--primary-color); /* Use primary color */
-    min-width: 100px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 10;
-}
-
-.dropdown-content a {
-    color: var(--secondary-color);
-    padding: 8px 12px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: var(--background-color); /* Use background color */
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Main Container */
-.main-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start; 
-    align-items: center;
-    height: 90%;
-}
-
-#gallery-page .main-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;   
-    align-items: center;      
-    height: 100%;             
-    width: 100%;              
-    margin: 0;                 
-}
-
-.gallery-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start; /* Ensures content flows from left to right */
-    gap: 30px; /* <-- This controls the space between image and description */
-    padding: 20px;
-    background-color: var(--primary-color); /* Use primary color */
-    border-radius: 10px;
-    width: 80%;
-    height: 250px;
-    margin-bottom: 20px;
-    border: 2px solid transparent; /* No border by default, but space is reserved */
-    transition: border 0.3s ease; /* Smooth transition effect */
-}
-
-.gallery-container * {
-    color: var(--secondary-color); /* Change text color to secondary color */
-}
-.gallery-container:hover {
-    border: 5px solid var(--secondary-color); /* Use secondary color on hover */
-}
-
-/* Alternate the layout for every even item (zig-zag) */
-.gallery-container:nth-child(even) {
-    flex-direction: row-reverse;
-  }
-  
-  /* On small screens: stack image on top, description below */
-  @media (max-width: 768px) {
-    .gallery-container {
-      flex-direction: column;
-    }
-  
-    .gallery-container:nth-child(even) {
-      flex-direction: column; /* Remove zig-zag on mobile */
-    }
-  }
-
-/* Image Container */
-.image-container {
-    flex: 0 0 auto; /* Don't stretch */
-    padding: 10px;
-}
-
-.gallery-image {
-    width: 250px; /* Set a fixed width */
-    height: 250px; /* Set a fixed height */
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-/* Description Container */
-.description-container {
-    flex: 1; /* Take the remaining space */
-    padding: 10px;
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-/* Slideshow Container */
-.slideshow-container {
-    display: flex;
-    justify-content: center;
-    margin: 50px auto;
-    width: 90%;
-}
-
-/* Slideshow Styles */
-.slideshow {
-    width: 30%;
-    aspect-ratio: 1;
-    margin: 0 10px;
-    overflow: hidden;
-    position: relative;
-}
-
-/* Slides */
-.slide {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    animation-duration: 24s; /* 6 images * 4s = 24s for all 8 images (faster) */
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    opacity: 0;
-}
-
-
-/* Animation 1: Slide From Left */
-.slideshow1 .slide {
-    animation-name: slideFromLeft;
-}
-
-@keyframes slideFromLeft {
-    0% { transform: translateX(-100%); opacity: 0; }
-    10% { opacity: 1; transform: translateX(0); }
-    12.5% { opacity: 1; transform: translateX(0); }
-    20% { opacity: 0; transform: translateX(100%); }
-    100% { opacity: 0; transform: translateX(100%); }
-}
-
-/* Animation 2: Fade In and Out */
-.slideshow2 .slide {
-    animation-name: fadeInOut;
-}
-
-@keyframes fadeInOut {
-    0% { opacity: 0; }
-    10% { opacity: 1; }
-    20% { opacity: 1; }
-    30% { opacity: 0; }
-    100% { opacity: 0; }
-}
-
-/* Animation 3: Slide Right to Left */
-.slideshow3 .slide {
-    animation-name: slideRightToLeft;
-}
-
-@keyframes slideRightToLeft {
-    0% { transform: translateX(100%); opacity: 0; }
-    10% { opacity: 1; transform: translateX(0); }
-    12.5% { opacity: 1; transform: translateX(0); }
-    20% { opacity: 0; transform: translateX(-100%); }
-    100% { opacity: 0; transform: translateX(-100%); }
-}
-
-/* Slide Delay for each slide */
-.slideshow1 .slide:nth-child(1) { animation-delay: 0s; }
-.slideshow1 .slide:nth-child(2) { animation-delay: 3s; }
-.slideshow1 .slide:nth-child(3) { animation-delay: 6s; }
-.slideshow1 .slide:nth-child(4) { animation-delay: 9s; }
-.slideshow1 .slide:nth-child(5) { animation-delay: 12s; }
-.slideshow1 .slide:nth-child(6) { animation-delay: 15s; }
-.slideshow1 .slide:nth-child(7) { animation-delay: 18s; }
-.slideshow1 .slide:nth-child(8) { animation-delay: 21s; }
-
-.slideshow2 .slide:nth-child(1) { animation-delay: 0s; }
-.slideshow2 .slide:nth-child(2) { animation-delay: 3s; }
-.slideshow2 .slide:nth-child(3) { animation-delay: 6s; }
-.slideshow2 .slide:nth-child(4) { animation-delay: 9s; }
-.slideshow2 .slide:nth-child(5) { animation-delay: 12s; }
-.slideshow2 .slide:nth-child(6) { animation-delay: 15s; }
-.slideshow2 .slide:nth-child(7) { animation-delay: 18s; }
-.slideshow2 .slide:nth-child(8) { animation-delay: 21s; }
-
-.slideshow3 .slide:nth-child(1) { animation-delay: 0s; }
-.slideshow3 .slide:nth-child(2) { animation-delay: 3s; }
-.slideshow3 .slide:nth-child(3) { animation-delay: 6s; }
-.slideshow3 .slide:nth-child(4) { animation-delay: 9s; }
-.slideshow3 .slide:nth-child(5) { animation-delay: 12s; }
-.slideshow3 .slide:nth-child(6) { animation-delay: 15s; }
-.slideshow3 .slide:nth-child(7) { animation-delay: 18s; }
-.slideshow3 .slide:nth-child(8) { animation-delay: 21s; }
-
-footer {
-    background-color: var(--secondary-color); 
+/* FIX: Stripping the global brown color so the sharp image shows through! */
+.sharp-text h2 {
+    color: transparent !important; /* CRUCIAL: Overrides the global brown */
+    -webkit-text-fill-color: transparent !important; /* CRUCIAL for Chrome/Safari */
+    font-family: 'Cinzel', serif;
+    font-size: 8vh; /* Scaled perfectly for the square */
+    font-weight: 700;
+    letter-spacing: 6px;
+    margin: 0;
     text-align: center;
+    width: 90%; /* Prevents long words from spilling out of the square */
+}
+
+
+/* --- OPTION B: MASONRY MODAL STYLES --- */
+.masonry-content-wrapper {
+    width: 100%; height: 100%;
+    overflow-y: auto; 
+    padding: 6rem 4rem;
     position: relative;
-    bottom: 0;
-    display: flex; /* Enables flexbox on the footer */
-    justify-content: center; /* Horizontally centers the icons */
-    align-items: center; /* Vertically centers the icons */
-    flex-direction: column; /* Stack the content vertically */
-    width: 100%;
-    padding: 10px;    
+    z-index: 2;
 }
 
-footer p {
-    margin: 0; /* Remove default margin from <p> elements */
+.masonry-header { text-align: center; margin-bottom: 4rem; }
+.masonry-header h1 { font-size: 4rem; color: var(--brand-green); margin-bottom: 1rem; }
+.masonry-header p { font-size: 1.2rem; color: var(--text-color); max-width: 600px; margin: 0 auto; }
+
+.masonry-grid {
+    column-count: 3; 
+    column-gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-footer .contact-icons {
-    display: flex; /* Use flex for the icons */
-    gap: 10px; /* Space between the icons */
-     
+.masonry-grid img {
+    width: 100%; margin-bottom: 2rem; border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); break-inside: avoid; 
 }
 
-footer .contact-icons a {
-    display: inline-block;
-    margin-top:8px;
-
+.close-masonry {
+    position: fixed; top: 30px; right: 40px; 
+    color: var(--brand-green); font-size: 60px; 
+    z-index: 10000; cursor: pointer;
 }
-
-footer .copyright {
-    margin-top: 8px; /* Adds space between contact icons and copyright */
-    font-size: 10px;
-}
-
+/* =========================================
+   MOBILE MODAL OVERLAP FIX (< 768px)
+   ========================================= */
 @media (max-width: 768px) {
-    .slideshow-container {
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+    /* 1. The Screen Setup */
+    .modal-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100dvh !important; /* Locks to exact phone screen height */
+        overflow: hidden !important; 
     }
 
-    .slideshow {
-        width: 90%;          /* Full width */
-        max-width: 300px;     /* Optional: prevent it from being too wide on larger small screens */
-        margin-bottom: 20px;  /* Space between stacked slideshows */
+    /* 2. The Image Stage (Absorbs ALL leftover space) */
+    .modal-image-container {
+        flex: 1 1 0% !important; /* The 0% forces it to calculate height based on leftover space */
+        width: 100% !important;
+        min-height: 0 !important; 
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 70px 15px 15px 15px !important; /* Top padding clears the close button */
     }
 
-    .gallery-container {
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-        text-align: center;
+    /* 3. The Image (Never squashes) */
+    #modalImage {
+        max-width: 100% !important;
+        max-height: 100% !important;
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
     }
 
-    .gallery-image {
-        width: 100%;
-        height: auto;
-        max-width: 300px;
+    /* 4. The Text Plaque (Hugs the text EXACTLY) */
+    .modal-plaque {
+        flex: 0 0 auto !important; /* Sizes exactly to the content, no bigger */
+        width: 100% !important;
+        height: auto !important;
+        display: block !important; /* Overrides the desktop flex centering */
+        padding: 20px 20px 30px 20px !important; /* Removed the giant 100px empty space */
+        text-align: center !important;
+        background: var(--bg-color) !important; /* Ensures text is readable over the background */
+        max-height: 40vh !important; /* If text is super long, it becomes scrollable here */
+        overflow-y: auto !important;
     }
 
-    .description-container {
-        padding-top: 10px;
+    /* Mobile Typography Adjustments */
+    .modal-plaque h2 {
+        font-size: 2rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .modal-plaque p {
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important;
     }
 }
-
-.modal {
-    display: none;
+/* =========================================
+   NEWSLETTER MODAL
+   ========================================= */
+.newsletter-overlay {
+    z-index: 9999999;
+    display: none; /* Controlled by JS */
     position: fixed;
-    z-index: 9999; /* Ensure modal is above everything */
-    padding-top: 60px;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
 }
 
-/* Navigation arrows container *//* General Modal Styling */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 9999; /* Ensure modal is above everything */
-    padding-top: 60px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.9); /* Black background with transparency */
-}
-
-/* Modal Content Styling */
-.modal-content {
-    margin: auto;
-    display: block;
-    max-height: 80vh; /* Ensure content fits within viewport height */
-    max-width: 90vw; /* Ensure content fits within viewport width */
-    border-radius: 10px; /* Rounded corners */
-    z-index: 1; /* Lower than navigation arrows */
-}
-
-/* Close (×) Button Styling */
-.close {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: var(--secondary-color); /* Customizable color */
-    font-size: 40px; /* Large size for visibility */
-    cursor: pointer;
-    z-index: 10000; /* Ensure close button is clickable */
-}
-
-/* Navigation Arrows Container */
-.modal-nav {
+.newsletter-box {
     position: absolute;
     top: 50%;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-    z-index: 2; /* Above the image */
-    padding: 0 20px; /* Add consistent padding */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 450px;
+    background: var(--brand-grey); /* Brand Grey */
+    border: 2px solid var(--brand-green); /* Brand Green */
+    border-radius: 4px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.7);
 }
 
-/* Navigation Arrows Styling */
-.modal-nav span {
-    cursor: pointer;
-    color: var(--secondary-color); /* Customizable color */
-    font-size: 40px; /* Large size for visibility */
-    user-select: none; /* Prevent text selection */
-    background-color: rgba(0, 0, 0, 0.5); /* Background for visibility */
-    padding: 10px;
-    border-radius: 50%; /* Circular buttons for navigation */
+.newsletter-title {
+    font-family: 'Cinzel', serif;
+    color: #9db383;
+    margin-bottom: 12px;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
 }
 
-/* Hover Effect for Navigation Arrows */
-.modal-nav span:hover {
-    color: #ccc; /* Change color on hover */
-    background-color: rgba(255, 255, 255, 0.3); /* Lighten background on hover */
+.newsletter-text {
+    font-family: 'Montserrat', sans-serif;
+    color: #d1d1d1;
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+    line-height: 1.6;
 }
 
-/* Specific Image Display Styling for Modal */
-.modal img {
-    margin: auto;
-    display: block;
-    max-width: 100%; /* Ensure images fit within modal */
-    max-height: 80vh; /* Maintain aspect ratio */
-}
-
-/* Centering Modal Navigation and Content (Optional) */
-.modal-content-centered {
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-svg {
-    display: block; /* Optional: Center the SVG */
-    margin: auto;
-    transition: transform 0.4s ease, fill 0.4s ease; /* Smooth effect */
-}
-
-.background {
-    fill: var(--primary-color);
-}
-
-.primary {
-    fill: var(--primary-color);
-}
-
-.secondary {
-    fill: var(--secondary-color);
-}
-
-.gradient {
-    fill: url(#paint0_linear_87_7264);
-}
-
-/* Hide portfolio options by default */
-.portfolio-content {
-    display: none;
+/* Exit Buttons */
+.newsletter-close-x {
     position: absolute;
-    top: 0; /* Aligns it with the top of Portfolio button */
-    left: 100%; /* Positions it to the right of Explore */
-    background-color: var(--primary-color);
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    /* padding: 8px; */
-    z-index: 10;
+    top: 10px;
+    right: 15px;
+    color: #888;
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.3s;
 }
 
-/* Ensure Portfolio itself is styled correctly */
-.portfolio-dropdown {
-    position: relative;
+.newsletter-close-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s;
 }
 
-/* Show portfolio content on hover */
-.portfolio-dropdown:hover .portfolio-content {
-    display: block;
+/* Hover effects for both exit options */
+.newsletter-close-x:hover,
+.newsletter-close-btn:hover {
+    color: #9db383;
 }
 
-.art-container {
-    display: flex; /* Use flexbox for a dynamic layout */
-    flex-wrap: wrap; /* Allow the items to wrap onto the next row */
-    gap: 15px; /* Space between containers */
-    padding: 15px; /* Padding around the container */
-    justify-content: center; /* Align items to the left */
-}
-
-.artwork-container {
-    display: flex; /* Use flexbox to center content */
-    justify-content: center; /* Center the image horizontally */
-    align-items: center; /* Center the image vertically */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
-    border-radius: 8px; /* Rounded corners */
-    padding: 10px; /* Internal padding for better spacing */
-    max-width: 250px; /* Scale the containers to a maximum width */
-    max-height: 250px; /* Scale the containers to a maximum height */
-    overflow: hidden; /* Prevent content overflow */
-}
-
-.display-image {
-    max-width: 100%; /* Scale images down to fit the container's width */
-    max-height: 100%; /* Scale images down to fit the container's height */
-    height: auto; /* Maintain the aspect ratio */
-    width: auto; /* Maintain the aspect ratio */
-}
-  
-.artwork-container * {
-    color: var(--secondary-color); /* Change text color to secondary color */
-}
-.artwork-container:hover {
-    
-    box-shadow: 0 4px 6px rgba(249, 249, 249, 0.5); /* Add a subtle shadow */
-} 
-
-#popup {
-  
-  top: 0; /* Required when using full-screen */
-  left: 0; /* Required when using full-screen */
-  height: 35%;
-  width: 105%;
-  color: var(--primary-color);
-  z-index: 9999;
-  cursor: pointer;
-  display: none;
-  font-size: 20px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#popup a {
-  color: inherit;           /* Inherit color from #popup (i.e., var(--primary-color)) */
-  text-decoration: none;    /* Remove underline */
-}
-#popup a:hover {
-  text-decoration: underline; /* or change color on hover if needed */
-  font-style: italic;
+.kit-placeholder {
+    min-height: 60px;
+    margin-bottom: 20px;
+    color: #888;
+    font-style: italic;
+    font-size: 0.8em;
 }

@@ -1,0 +1,155 @@
+[
+    {
+        "title": "Soul of The Home",
+        "bgWord": "Soul",
+        "medium": "Acrylic paint on Premium Stretched Cotton Canvas",
+        "size": "Square prints availible",
+        "price": "Size dependant",
+        "desc": "Acrylic paint on Premium Stretched Cotton Canvas",
+        "coverImage": "./Paintings/candles cropped mockup (1).webp",
+        "carouselImages": [
+            "./Paintings/candles cropped mockup (1).webp",
+            "./Paintings/candles1.webp",
+            "./Paintings/candles mockup (1).webp"
+        ]
+    },
+    {
+        "title": "Peaceful",
+        "bgWord": "Peaceful",
+        "medium": "Acrylic paint on Premium Stretched Cotton Canvas",
+        "size": "12in x 15in x 0.5in",
+        "price": "$250",
+        "desc": "Acrylic paint on Premium Stretched Cotton Canvas",
+        "coverImage": "./Paintings/peacfull mockup cropped.png",
+        "carouselImages": [
+            "./Paintings/peacfull mockup cropped.webp",
+            "./Paintings/peacfull mockup (1).webp",
+            "./Paintings/peacefull (1).webp"
+        ]
+    },
+    {
+        "title": "Hidden Truth",
+        "bgWord": "Hidden",
+        "medium": "Oil paint on Premium Stretched Cotton Canvas",
+        "size": "23.6in x 33.1in x 0.6in",
+        "price": "$700",
+        "desc": "Oil paint on Premium Stretched Cotton Canvas",
+        "coverImage": "./Paintings/leaves Mockup.webp",
+        "carouselImages": [
+            "./Paintings/leaves Mockup.webp",
+            "./Paintings/leaves Mockup cropped.webp",
+            "./Paintings/Leaves.webp"
+        ]
+    },
+    {
+        "title": "Pink Harmony",
+        "bgWord": "Pink",
+        "medium": "Acrylic paint on Premium Cotton Stretched Canvas",
+        "size": "7.9in x 11.8in x 0.6in",
+        "price": "$250",
+        "desc": "Acrylic paint on Premium Cotton Stretched Canvas",
+        "coverImage": "./Paintings/Abstract mockup.webp",
+        "carouselImages": [
+            "./Paintings/Abstract cropped mockup.webp",
+            "./Paintings/Abstract.webp",
+            "./Paintings/Abstract mockup.webp"
+        ]
+    },
+    {
+        "title": "Deep Dive",
+        "bgWord": "Deep",
+        "medium": "Oil paint on Premium Cotton Stretched Canvas",
+        "size": "23.6in x 23.6in x 0.6in",
+        "price": "$600",
+        "desc": "Oil paint on Premium Cotton Stretched Canvas",
+        "coverImage": "./Paintings/black and white water mock up.webp",
+        "carouselImages": [
+            "./Paintings/black and white water cropped mockup.webp",
+            "./Paintings/black and white water mock up.webp",
+            "./Paintings/black and white water.webp"
+        ]
+    },
+    {
+        "title": "Chavrusa",
+        "bgWord": "Chavrusa",
+        "medium": "Mixed Media: Acrylic paint, Charcoal and Soft Pastels on Premium Cotton Stretched Canvas",
+        "size": "35.4in x 35.4in x 0.6in",
+        "price": "$850",
+        "desc": "Mixed Media: Acrylic paint, Charcoal and Soft Pastels on Premium Cotton Stretched Canvas",
+        "coverImage": "./Paintings/blue boys mockup.webp",
+        "carouselImages": [
+            "./Paintings/blue boys cropped mockup.webp",
+            "./Paintings/blue boys mockup.webp",
+            "./Paintings/blue boys.webp"
+        ]
+    },
+    {
+        "title": "Purple Bloom",
+        "bgWord": "Purple",
+        "medium": "Acrylic paint on Premium Cotton Stretched Canvas",
+        "size": "30cm x 28cm x 4cm",
+        "price": "$220",
+        "desc": "Acrylic paint on Premium Cotton Stretched Canvas",
+        "coverImage": "./Paintings/roses mockup.webp",
+        "carouselImages": [
+            "./Paintings/roses cropped mockup.webp",
+            "./Paintings/Roses mockup.webp",
+            "./Paintings/Roses.webp"
+        ]
+    },
+    {
+        "title": "Shtetl Walk",
+        "bgWord": "Shtetl",
+        "medium": "Oil Paint on Premium Cotton Stretched Canvas",
+        "size": "24in x 24in x 0.6in",
+        "price": "$650",
+        "desc": "Oil Paint on Premium Cotton Stretched Canvas",
+        "coverImage": "./Paintings/Shtetle cropped mockup.webp",
+        "carouselImages": [
+            "./Paintings/Shtetle cropped mockup.webp"
+        ]
+    },
+    {
+        "title": "Touch the Forest",
+        "bgWord": "Touch",
+        "medium": "Textured Acrylic paint on Premium Cotton Stretched Canvas",
+        "size": "9.8in x 9.8in x 0.6in",
+        "price": "$200",
+        "desc": "Textured Acrylic paint on Premium Cotton Stretched Canvas",
+        "coverImage": "./Paintings/textured forest mockup.webp",
+        "carouselImages": [
+            "./Paintings/textured forest cropped mockup.webp",
+            "./Paintings/textured forest mockup.webp",
+            "./Paintings/textured forest.webp"
+        ]
+    },
+    {
+        "title": "Falling",
+        "bgWord": "Falling",
+        "medium": "Textured Acrylic paint on Premium Cotton Stretched Canvas",
+        "size": "Prints availible",
+        "price": "Size dependant",
+        "desc": "Prints on request",
+        "coverImage": "./Paintings/waterfall mockup.webp",
+        "carouselImages": [
+            "./Paintings/waterfall cropped mockup.webp",
+            "./Paintings/waterfall mockup.webp",
+            "./Paintings/waterfall.webp"
+        ]
+    },
+    {
+        "title": "Akeida",
+        "bgWord": "Akeida",
+        "medium": "Oil paint on Premium Cotton Stretched Canvas",
+        "size": "2 pieces, 23.6in x 11.8in x 0.6in each",
+        "price": "$850",
+        "desc": "Oil Paint on Premium Cotton Stretched Canvas",
+        "coverImage": "./Paintings/Akeida Mockup.webp",
+        "carouselImages": [
+            "./Paintings/Akeida cropped Mockup.webp",
+            "./Paintings/Akeida Mockup.webp",
+            "./Paintings/Akeida 1.webp",
+            "./Paintings/Akeida 2.webp"
+        ]
+    }
+]
