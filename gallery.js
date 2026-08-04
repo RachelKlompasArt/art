@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================
     // 2. FETCH DATA & BUILD GALLERY
     // =========================================
-    // We removed the hardcoded array and replaced it with this fetch command!
     fetch('./gallery_data.json')
         .then(response => response.json())
         .then(artworks => {
@@ -34,9 +33,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Provide a fallback in case there is no bgWord
                 const bgWordText = art.bgWord || art.title.split(' ')[0] || 'Art';
+                
+                // Construct the overlay HTML if a status message exists
+                const statusHtml = art.statusMsg && art.statusMsg.trim() !== '' 
+                    ? `<div class="status-overlay">${art.statusMsg}</div>` 
+                    : '';
 
                 section.innerHTML = `
                     <div class="art-bounding-box ${isReverse}">
+                        ${statusHtml}
                         <div class="bg-title">${bgWordText}</div>
                         <div class="image-carousel">
                             <span class="nav-arrow carousel-btn prev-btn">&#10094;</span>
@@ -46,6 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="museum-plaque">
                             <h2>${art.title}</h2>
                             <p>${art.medium}</p>
+                            <br>
+                            <h3>Price: ${art.price}</h3>
                         </div>
                     </div>
                 `;
@@ -89,10 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden'; 
-                document.body.classList.add('modal-open');
             };
 
-            // Modal Click Listeners (Must be attached AFTER gallery is built)
+            // Modal Click Listeners
             document.querySelectorAll('.art-image').forEach(img => {
                 img.addEventListener('click', (e) => {
                     const artIdx = parseInt(e.target.getAttribute('data-art-index'));
@@ -118,11 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => console.error("Error loading gallery JSON data:", error));
 
-    // Close Modal Event (Outside the fetch because the button is always on the page)
+    // Close Modal Event
     closeBtn.addEventListener('click', () => {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto'; 
-        document.body.classList.remove('modal-open');
     });
 
 
@@ -134,23 +139,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const closePopupBtn = document.getElementById('close-popup');
     const contactGreeting = document.getElementById('contact-greeting'); 
     
-    // I added these variables to fix the error at the bottom of your file!
     const waBtn = document.querySelector('.wa-btn');
     const emailBtn = document.querySelector('.email-btn');
     const messageBox = document.getElementById('contact-message');
     
-    // Show bubble and greeting after 3 seconds
     setTimeout(() => { 
         if(contactBubble) contactBubble.classList.add('show'); 
         if(contactGreeting) contactGreeting.classList.add('show');
         
-        // Hide greeting after 10 seconds
         setTimeout(() => {
             if(contactGreeting) contactGreeting.classList.remove('show');
-        }, 5000);
+        }, 10000);
     }, 3000);
     
-    // Open popup
     if(contactBubble) {
         contactBubble.addEventListener('click', () => {
             contactPopup.classList.add('open');
@@ -159,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Close popup
     if(closePopupBtn) {
         closePopupBtn.addEventListener('click', () => {
             contactPopup.classList.remove('open');
@@ -167,17 +167,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-// WhatsApp and Email Submit actions
     if(waBtn) {
         waBtn.addEventListener('click', () => {
             const msg = messageBox ? messageBox.value : '';
             const phoneNumber = "+27768606099"; 
-            
-            // Send the click event to Google Analytics
-            if (typeof gtag === 'function') {
-                gtag('event', 'generate_lead', { method: 'WhatsApp' });
-            }
-
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`, '_blank');
         });
     }
@@ -186,13 +179,20 @@ document.addEventListener('DOMContentLoaded', () => {
         emailBtn.addEventListener('click', () => {
             const msg = messageBox ? messageBox.value : '';
             const emailAddress = "rachel@rachelklompas.com"; 
-            
-            // Send the click event to Google Analytics
-            if (typeof gtag === 'function') {
-                gtag('event', 'generate_lead', { method: 'Email' });
-            }
-
             window.location.href = `mailto:${emailAddress}?subject=Website Inquiry&body=${encodeURIComponent(msg)}`;
+        });
+    }
+
+    // =========================================
+    // 4. NAVIGATION LOGIC
+    // =========================================
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+
+    if (hamburgerIcon && dropdownMenu) {
+        hamburgerIcon.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show-menu');
+            hamburgerIcon.classList.toggle('active');
         });
     }
 });

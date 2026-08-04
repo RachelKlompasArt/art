@@ -4,17 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rachel Klompas Art & Design</title>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXJ44FZJV"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-MVXJ44FZJV');
-    </script>
     <link rel="stylesheet" href="style.css" />
    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Pacifico&display=swap" rel="stylesheet">
-   <meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
 </head>
 <body class="index-body"> 
     
@@ -22,6 +13,20 @@
 
     <div class="split-container">
 
+        <!-- New About Me Panel (Top Left) -->
+        <a href="aboutMe.html" class="split-panel about-panel">
+            <div class="panel-content">
+                <div class="main-word-row">
+                    <span class="arrow">&#9664;</span>
+                    <div class="text-stack">
+                        <h2>About</h2>
+                        <h3 class="sub-word">Me</h3>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Existing Art Gallery Panel (Bottom Right) -->
         <a href="gallery.html" class="split-panel art-panel">
             <div class="panel-content">
                 <div class="main-word-row">
@@ -29,7 +34,7 @@
                         <h2>Art</h2>
                         <h3 class="sub-word">Gallery</h3>
                     </div>
-                    <span class="arrow">&#9654;&#xFE0E;</span>
+                    <span class="arrow">&#9654;</span>
                 </div>
             </div>
         </a>
@@ -52,7 +57,6 @@
         
     </div>
     
-
     <script src="index.js"></script>
 </body>
 </html>

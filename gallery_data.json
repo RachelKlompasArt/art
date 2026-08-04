@@ -1,4 +1,20 @@
 [
+        {
+        "title": "Akeida",
+        "bgWord": "Akeida",
+        "medium": "Oil paint on Premium Cotton Stretched Canvas",
+        "size": "2 pieces, 23.6in x 11.8in x 0.6in each",
+        "price": "$850",
+        "statusMsg": "",
+        "desc": "Oil Paint on Premium Cotton Stretched Canvas",
+        "coverImage": "./Paintings/Akeida Mockup.webp",
+        "carouselImages": [
+            "./Paintings/Akeida cropped Mockup.webp",
+            "./Paintings/Akeida Mockup.webp",
+            "./Paintings/Akeida 1.webp",
+            "./Paintings/Akeida 2.webp"
+        ]
+    },
     {
         "title": "Soul of The Home",
         "bgWord": "Soul",
@@ -137,21 +153,6 @@
             "./Paintings/waterfall cropped mockup.webp",
             "./Paintings/waterfall mockup.webp",
             "./Paintings/waterfall.webp"
-        ]
-    },
-    {
-        "title": "Akeida",
-        "bgWord": "Akeida",
-        "medium": "Oil paint on Premium Cotton Stretched Canvas",
-        "size": "2 pieces, 23.6in x 11.8in x 0.6in each",
-        "price": "$850",
-        "desc": "Oil Paint on Premium Cotton Stretched Canvas",
-        "coverImage": "./Paintings/Akeida Mockup.webp",
-        "carouselImages": [
-            "./Paintings/Akeida cropped Mockup.webp",
-            "./Paintings/Akeida Mockup.webp",
-            "./Paintings/Akeida 1.webp",
-            "./Paintings/Akeida 2.webp"
         ]
     }
 ]

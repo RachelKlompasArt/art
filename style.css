@@ -5,13 +5,6 @@
     --brand-grey: #626262; 
 }
 
-/* Force iOS to respect your Mahogany/Brand colors on all text and links */
-a, button, p, h1, h2, span, div {
-    color: inherit;
-    text-decoration: none;
-    -webkit-text-fill-color: initial; /* Overrides iOS specific text fills */
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -38,10 +31,10 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
-    z-index: 0; /* Sits at the very back of every page */
+    z-index: 0; 
     display: flex;
     align-items: center; justify-content: center;
-    background-image: url('./Paintings/background.jpg'); /* KEEP YOUR FILE NAME HERE */
+    background-image: url('./Paintings/background.jpg'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -54,12 +47,9 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     top: 30px;
     left: 40px;
-    
-    /* THE FIXES: */
-    z-index: 9000; /* Bumped WAY up to bypass the 3D viewport and Gallery containers */
-    pointer-events: auto; /* Strictly forces the browser to register clicks here */
+    z-index: 9000; 
+    pointer-events: auto; 
     cursor: pointer;
-    
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -72,13 +62,11 @@ h1, h2, h3, h4, h5, h6 {
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover Effect */
 .back-home-btn:hover {
     color: var(--brand-green);
     transform: translateX(-5px); 
 }
 
-/* Mobile sizing */
 @media (max-width: 768px) {
     .back-home-btn {
         top: 20px;
@@ -92,7 +80,7 @@ h1, h2, h3, h4, h5, h6 {
    ========================================= */
 #gallery-container {
     position: relative;
-    z-index: 1; /* Ensures the art scrolls ON TOP of the fixed image */
+    z-index: 1; 
     display: flex; flex-direction: column; width: 100%; padding: 50px 0; 
 }
 
@@ -123,7 +111,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .art-panel { position: relative; width: 100vw; min-height: 90vh; display: flex; align-items: center; justify-content: center; padding: 4rem 0; }
-.art-bounding-box { display: flex; align-items: center; justify-content: space-between; width: 95%; max-width: 1600px; padding: 0 2rem; }
+.art-bounding-box { position: relative; display: flex; align-items: center; justify-content: space-between; width: 95%; max-width: 1600px; padding: 0 2rem; }
 .art-bounding-box.reverse { flex-direction: row-reverse; }
 
 .image-carousel { 
@@ -151,8 +139,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 .museum-plaque h2 { font-family: 'Cinzel', serif; color: var(--brand-green); margin-bottom: 1rem; font-size: 3rem; }
 .museum-plaque p { font-family: 'Montserrat', sans-serif; color: var(--brand-green); margin: 0; font-size: 1.5rem; font-weight: 500; }
+.museum-plaque h3 { font-family: 'Cinzel', serif; color: var(--brand-green); margin: 0; font-size: 2rem; }
 
-/* --- UNIFIED NAVIGATION ARROWS --- */
 .nav-arrow {
     background-color: var(--brand-green);
     color: var(--brand-grey);
@@ -178,11 +166,33 @@ h1, h2, h3, h4, h5, h6 {
 .prev-btn { left: 15px; }
 .next-btn { right: 15px; }
 
+/* =========================================
+   STATUS OVERLAY (SOLD / MESSAGE)
+   ========================================= */
+.status-overlay {
+    position: absolute;
+    top: 40px;
+    left: -20px;
+    background-color: rgba(157, 179, 131, 0.95);
+    color: #ffffff;
+    padding: 15px 50px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    z-index: 10; 
+    pointer-events: none; 
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    transform: rotate(-3deg);
+}
+
 @media (max-width: 1024px) {
     .art-bounding-box, .art-bounding-box.reverse { flex-direction: column; gap: 2rem; }
     .image-carousel, .museum-plaque { width: 100%; height: auto; }
     .art-image { max-height: 60vh; }
     .museum-plaque { border-left: none; border-top: 4px solid var(--brand-green); padding: 2.5rem; }
+    .status-overlay { top: 10px; left: 0px; font-size: 1.2rem; padding: 10px 30px; }
 }
 
 /* =========================================
@@ -239,14 +249,13 @@ h1, h2, h3, h4, h5, h6 {
     }
     .modal-nav { padding: 0 10px; }
 }
-
 /* =========================================
-   INDEX PAGE STYLES (STRICTLY ISOLATED)
+   INDEX PAGE STYLES
    ========================================= */
 .index-body { margin: 0; overflow: hidden !important; height: 100vh !important; }
 .index-body .split-container { position: relative; width: 100vw; height: 100vh; background-color: transparent; }
 .index-body .split-panel { position: absolute; display: block; text-decoration: none; cursor: pointer; }
-.index-body .design-panel { top: 0; left: 0; width: 50%; height: 100vh; z-index: 1; }
+.index-body .about-panel { top: 0; left: 0; width: 50%; height: 100vh; z-index: 1; }
 .index-body .art-panel { top: 0; right: 0; width: 50%; height: 100vh; z-index: 1; }
 
 .index-body .panel-content { position: absolute; pointer-events: none; opacity: 0.5; white-space: nowrap; }
@@ -258,87 +267,80 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Pacifico', cursive; 
     font-weight: 500; 
     letter-spacing: 4px; 
-    text-transform: lowercase; /* Turns it into "baby letters" */
+    text-transform: lowercase; 
     color: var(--brand-grey); 
     position: relative; 
     z-index: 2; 
-    transition: color 0.3s ease; /* Pulls the text slightly higher on the page */
+    transition: color 0.3s ease; 
     color: var(--brand-green);
 }
 .index-body .panel-content .arrow { font-family: 'Cinzel', serif; color: var(--brand-grey); transition: color 0.3s ease; }
 
-.index-body .design-panel .panel-content { top: 2%; left: 3vw; }
+.index-body .about-panel .panel-content { top: 2%; left: 3vw; }
 .index-body .art-panel .panel-content { bottom: 2%; right: 3vw; }
 
-.index-body .design-panel h2 { font-size: 8vw; }
-.index-body .design-panel h3 { font-size: 4.5vw; margin-top: -5.5vw; margin-right: 2vw; } 
-.index-body .design-panel .arrow { font-size: 8vw; }
+.index-body .about-panel h2 { font-size: 8vw; }
+.index-body .about-panel h3 { font-size: 4.5vw; margin-top: -5.5vw; margin-right: 2vw; } 
+.index-body .about-panel .arrow { font-size: 8vw; }
 
 .index-body .art-panel h2 { font-size: 12vw; }
 .index-body .art-panel h3 { font-size: 4.5vw; margin-top: -5.5vw; margin-right: 2vw; } 
 .index-body .art-panel .arrow { font-size: 8vw; }
 
-.index-body .design-panel:hover h2, .index-body .design-panel:hover h3, .index-body .design-panel:hover .arrow { color: var(--brand-green); }
+.index-body .about-panel:hover h2, .index-body .about-panel:hover h3, .index-body .about-panel:hover .arrow { color: var(--brand-green); }
 .index-body .art-panel:hover h2, .index-body .art-panel:hover h3, .index-body .art-panel:hover .arrow { color: var(--brand-green); }
 
 .index-body .center-logo { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 280px; pointer-events: none; }
 .index-body .center-logo svg { width: 100%; height: auto; filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.3)); }
 .index-body .center-logo svg path { fill: var(--brand-green); transition: fill 0.3s ease; }
-.index-body .center-logo.hover-design .logo-design-half path { fill: var(--brand-grey); }
+.index-body .center-logo.hover-about .logo-design-half path { fill: var(--brand-grey); }
 .index-body .center-logo.hover-art .logo-art-half path { fill: var(--brand-grey); }
 
 @media (max-width: 768px) {
-    .index-body .design-panel { top: 0; left: 0; width: 100vw; height: 50vh; }
+    .index-body .about-panel { top: 0; left: 0; width: 100vw; height: 50vh; }
     .index-body .art-panel { top: 50vh; left: 0; width: 100vw; height: 50vh; }
     .index-body .center-logo { width: 180px; }
-    .index-body .design-panel h2 { font-size: 14vw; }
-    .index-body .design-panel h3 { font-size: 3vw; margin-top: -2.5vw; margin-right: 2vw; }
-    .index-body .design-panel .arrow { font-size: 7vw; }
+    .index-body .about-panel h2 { font-size: 14vw; }
+    .index-body .about-panel h3 { font-size: 3vw; margin-top: -2.5vw; margin-right: 2vw; }
+    .index-body .about-panel .arrow { font-size: 7vw; }
     .index-body .art-panel h2 { font-size: 26vw; }
     .index-body .art-panel h3 { font-size: 5vw; margin-top: -4.5vw; margin-right: 3vw; }
     .index-body .art-panel .arrow { font-size: 12vw; }
-    .index-body .design-panel .panel-content { top: auto; bottom: 100px; left: 50%; transform: translateX(-50%); }
+    .index-body .about-panel .panel-content { top: auto; bottom: 100px; left: 50%; transform: translateX(-50%); }
     .index-body .art-panel .panel-content { bottom: auto; top: 100px; right: auto; left: 50%; transform: translateX(-50%); }
     .index-body .main-word-row { gap: 3vw; } 
 }
 
 @keyframes slideInLeft { from { transform: translateX(-100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 @keyframes slideInRight { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-.index-body .design-panel .main-word-row { animation: slideInLeft 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+.index-body .about-panel .main-word-row { animation: slideInLeft 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
 .index-body .art-panel .main-word-row { animation: slideInRight 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
 
 /* =========================================
    GLOBAL CONTACT WIDGET
    ========================================= */
-
-/* --- THE ANIMATED GREETING --- */
 .contact-greeting {
     position: absolute;
-    right: 75px; /* Sits exactly to the left of the 60px bubble */
+    right: 75px; 
     bottom: 10px;
     background-color: var(--brand-mahogany);
     color: var(--brand-brass);
     padding: 12px 20px;
     border-radius: 20px;
-    border-bottom-right-radius: 4px; /* Gives it a speech-bubble tail */
+    border-bottom-right-radius: 4px; 
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: 0.95rem;
     white-space: nowrap;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    pointer-events: none; /* User clicks pass through it */
-    
-    /* Animation initial state */
+    pointer-events: none; 
     opacity: 0;
     transform: translateX(30px) scale(0.8);
     transform-origin: right bottom;
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.contact-greeting.show {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-}
+.contact-greeting.show { opacity: 1; transform: translateX(0) scale(1); }
 #contact-widget-container { position: fixed; bottom: 30px; right: 30px; z-index: 100000; display: flex; flex-direction: column; align-items: flex-end; pointer-events: none; }
 .contact-bubble { width: 60px; height: 60px; background-color: var(--brand-green); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(0,0,0,0.2); cursor: pointer; pointer-events: auto; transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.5s ease; opacity: 0; transform: translateY(20px); }
 .contact-bubble.show { opacity: 1; transform: translateY(0); }
@@ -362,355 +364,248 @@ h1, h2, h3, h4, h5, h6 {
 /* =========================================
    DESIGN PAGE STYLES (3D TUNNEL & MASONRY)
    ========================================= */
-
 .design-body { margin: 0; overflow-x: hidden; }
+#viewport { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; perspective: 800px; overflow: hidden; z-index: 1; }
+#camera { width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; }
 
-/* The 3D Room */
-#viewport {
-    position: fixed; top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    perspective: 800px; /* Creates the 3D depth */
-    overflow: hidden;
-    z-index: 1; 
-}
-
-/* The Camera moving through the room */
-#camera {
-    width: 100%; height: 100%; position: absolute;
-    transform-style: preserve-3d;
-}
-
-/* --- THE TEXT MASK EFFECT --- */
 .project-panel {
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 60vh; 
-    height: 60vh;
-    margin-left: -30vh; 
-    margin-top: -30vh;  
-    cursor: pointer;
-    
-    /* ADD/UPDATE: Ensure box-shadow is part of the transition for smoothness */
-    transition: filter 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    
-    opacity: 0; 
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2); /* Subtle initial shadow */
-    border-radius: 4px;
+    position: absolute; top: 50%; left: 50%; width: 60vh; height: 60vh; margin-left: -30vh; margin-top: -30vh;  
+    cursor: pointer; transition: filter 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0; box-shadow: 0 20px 40px rgba(0,0,0,0.2); border-radius: 4px;
 }
+.project-panel:hover { filter: brightness(1.1); box-shadow: 0 40px 80px rgba(0,0,0,0.6); transform: scale(1.02); }
+.blur-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: blur(15px) brightness(0.8); border-radius: 4px; z-index: 1; }
+.sharp-text { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-size: cover; background-position: center; background-clip: text; -webkit-background-clip: text; z-index: 2; }
+.sharp-text h2 { color: transparent !important; -webkit-text-fill-color: transparent !important; font-family: 'Cinzel', serif; font-size: 8vh; font-weight: 700; letter-spacing: 6px; margin: 0; text-align: center; width: 90%; }
 
-/* UPDATE: Make the shadow darker and larger on hover */
-.project-panel:hover { 
-    filter: brightness(1.1); /* Optional: a tiny bit of extra glow */
-    box-shadow: 0 40px 80px rgba(0,0,0,0.6); /* MUCH darker and deeper shadow */
-    transform: scale(1.02); /* Slight lift effect */
-}
-
-/* The blurred background layer */
-.blur-bg {
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-size: cover; background-position: center;
-    
-    /* THE FIX: Removed brightness(0.5) to keep it light */
-    filter: blur(15px) brightness(0.8);
-    
-    border-radius: 4px;
-    z-index: 1;
-}
-
-/* The container holding the sharp background */
-.sharp-text {
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%;
-    display: flex; justify-content: center; align-items: center;
-    background-size: cover; background-position: center;
-    
-    /* These create the text mask */
-    background-clip: text;
-    -webkit-background-clip: text;
-    
-    z-index: 2;
-}
-
-/* FIX: Stripping the global brown color so the sharp image shows through! */
-.sharp-text h2 {
-    color: transparent !important; /* CRUCIAL: Overrides the global brown */
-    -webkit-text-fill-color: transparent !important; /* CRUCIAL for Chrome/Safari */
-    font-family: 'Cinzel', serif;
-    font-size: 8vh; /* Scaled perfectly for the square */
-    font-weight: 700;
-    letter-spacing: 6px;
-    margin: 0;
-    text-align: center;
-    width: 90%; /* Prevents long words from spilling out of the square */
-}
-
-
-/* --- OPTION B: MASONRY MODAL STYLES --- */
-.masonry-content-wrapper {
-    width: 100%; height: 100%;
-    overflow-y: auto; 
-    padding: 6rem 4rem;
-    position: relative;
-    z-index: 2;
-}
-
+.masonry-content-wrapper { width: 100%; height: 100%; overflow-y: auto; padding: 6rem 4rem; position: relative; z-index: 2; }
 .masonry-header { text-align: center; margin-bottom: 4rem; }
 .masonry-header h1 { font-size: 4rem; color: var(--brand-green); margin-bottom: 1rem; }
 .masonry-header p { font-size: 1.2rem; color: var(--text-color); max-width: 600px; margin: 0 auto; }
+.masonry-grid { column-count: 3; column-gap: 2rem; max-width: 1400px; margin: 0 auto; }
+.masonry-grid img { width: 100%; margin-bottom: 2rem; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); break-inside: avoid; }
+.close-masonry { position: fixed; top: 30px; right: 40px; color: var(--brand-green); font-size: 60px; z-index: 10000; cursor: pointer; }
 
-.masonry-grid {
-    column-count: 3; 
-    column-gap: 2rem;
-    max-width: 1400px;
+@media (max-width: 768px) {
+    .modal-layout { display: flex !important; flex-direction: column !important; height: 100dvh !important; overflow: hidden !important; }
+    .modal-image-container { flex: 1 1 0% !important; width: 100% !important; min-height: 0 !important; display: flex !important; justify-content: center !important; align-items: center !important; padding: 70px 15px 15px 15px !important; }
+    #modalImage { max-width: 100% !important; max-height: 100% !important; width: auto !important; height: auto !important; object-fit: contain !important; box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important; }
+    .modal-plaque { flex: 0 0 auto !important; width: 100% !important; height: auto !important; display: block !important; padding: 20px 20px 30px 20px !important; text-align: center !important; background: var(--bg-color) !important; max-height: 40vh !important; overflow-y: auto !important; }
+    .modal-plaque h2 { font-size: 2rem !important; margin-bottom: 0.5rem !important; }
+    .modal-plaque p { font-size: 1rem !important; margin-bottom: 0.5rem !important; }
+}
+
+.newsletter-overlay { z-index: 9999999; display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(8px); }
+.newsletter-box { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 450px; background: var(--brand-grey); border: 2px solid var(--brand-green); border-radius: 4px; padding: 40px 30px; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.7); }
+.newsletter-title { font-family: 'Cinzel', serif; color: #9db383; margin-bottom: 12px; font-size: 1.8rem; letter-spacing: 2px; }
+.newsletter-text { font-family: 'Montserrat', sans-serif; color: #d1d1d1; margin-bottom: 30px; font-size: 0.9rem; line-height: 1.6; }
+.newsletter-close-x { position: absolute; top: 10px; right: 15px; color: #888; font-size: 28px; cursor: pointer; transition: color 0.3s; }
+.newsletter-close-btn { background: none; border: none; color: #888; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; cursor: pointer; text-decoration: underline; transition: color 0.3s; }
+.newsletter-close-x:hover, .newsletter-close-btn:hover { color: #9db383; }
+.kit-placeholder { min-height: 60px; margin-bottom: 20px; color: #888; font-style: italic; font-size: 0.8em; }
+
+/* =========================================
+   HAMBURGER MENU
+   ========================================= */
+.hamburger-container {
+    position: fixed;
+    top: 30px;
+    right: 40px;
+    z-index: 10000;
+}
+
+.hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: background 0.3s ease;
+}
+
+.hamburger-icon:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+.hamburger-icon .bar {
+    width: 30px;
+    height: 3px;
+    background-color: var(--brand-green);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburger-icon.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger-icon.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-icon.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    border-left: 3px solid var(--brand-green);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu.show-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-menu a {
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    color: var(--brand-green);
+    padding: 15px 20px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background: var(--brand-green);
+    color: white;
+}
+
+/* =========================================
+   ABOUT ME PAGE STYLES
+   ========================================= */
+#about-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 6rem 2rem;
+}
+
+.about-plaque {
+    width: 90%; 
+    max-width: 800px; 
+    text-align: center;
     margin: 0 auto;
 }
 
-.masonry-grid img {
-    width: 100%; margin-bottom: 2rem; border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); break-inside: avoid; 
-}
-
-.close-masonry {
-    position: fixed; top: 30px; right: 40px; 
-    color: var(--brand-green); font-size: 60px; 
-    z-index: 10000; cursor: pointer;
-}
-
 /* =========================================
-   MOBILE MODAL OVERLAP FIX (< 768px)
+   ABOUT ME PAGE STYLES
    ========================================= */
-@media (max-width: 768px) {
-    /* 1. The Screen Setup */
-    .modal-layout {
-        display: flex !important;
-        flex-direction: column !important;
-        height: 100dvh !important; /* Locks to exact phone screen height */
-        overflow: hidden !important; 
-    }
-
-    /* 2. The Image Stage (Absorbs ALL leftover space) */
-    .modal-image-container {
-        flex: 1 1 0% !important; /* The 0% forces it to calculate height based on leftover space */
-        width: 100% !important;
-        min-height: 0 !important; 
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        padding: 70px 15px 15px 15px !important; /* Top padding clears the close button */
-    }
-
-    /* 3. The Image (Never squashes) */
-    #modalImage {
-        max-width: 100% !important;
-        max-height: 100% !important;
-        width: auto !important;
-        height: auto !important;
-        object-fit: contain !important;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
-    }
-
-    /* 4. The Text Plaque (Hugs the text EXACTLY) */
-    .modal-plaque {
-        flex: 0 0 auto !important; /* Sizes exactly to the content, no bigger */
-        width: 100% !important;
-        height: auto !important;
-        display: block !important; /* Overrides the desktop flex centering */
-        padding: 20px 20px 30px 20px !important; /* Removed the giant 100px empty space */
-        text-align: center !important;
-        background: var(--bg-color) !important; /* Ensures text is readable over the background */
-        max-height: 40vh !important; /* If text is super long, it becomes scrollable here */
-        overflow-y: auto !important;
-    }
-
-    /* Mobile Typography Adjustments */
-    .modal-plaque h2 {
-        font-size: 2rem !important;
-        margin-bottom: 0.5rem !important;
-    }
-
-    .modal-plaque p {
-        font-size: 1rem !important;
-        margin-bottom: 0.5rem !important;
-    }
-}
-/* =========================================
-   NEWSLETTER MODAL
-   ========================================= */
-.newsletter-overlay {
-    z-index: 9999999;
-    display: none; /* Controlled by JS */
-    position: fixed;
-    top: 0;
-    left: 0;
+#about-main {
+    position: relative;
+    z-index: 1;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.6);
-    backdrop-filter: blur(8px);
+    padding-top: 100px; 
+    display: flex;
+    flex-direction: column;
 }
 
-.newsletter-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 450px;
-    background: var(--brand-grey); /* Brand Grey */
-    border: 2px solid var(--brand-green); /* Brand Green */
+.about-section {
+    width: 100vw;
+    padding: 6rem 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.about-section.light {
+    background: rgba(253, 253, 253, 0.9);
+}
+
+.about-section.inverted {
+    background: var(--brand-green);
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    gap: 4rem;
+}
+
+.about-content.reverse {
+    flex-direction: row-reverse;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-section.light .about-text h2 {
+    color: var(--brand-green);
+}
+
+.about-section.inverted .about-text h2 {
+    color: #ffffff;
+}
+
+.about-section.light .about-text p {
+    color: var(--brand-grey);
+}
+
+.about-section.inverted .about-text p {
+    color: #ffffff;
+}
+
+.about-text p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    font-weight: 400;
+}
+
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
     border-radius: 4px;
-    padding: 40px 30px;
-    text-align: center;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    object-fit: cover;
 }
 
-.newsletter-title {
-    font-family: 'Cinzel', serif;
-    color: #9db383;
-    margin-bottom: 12px;
-    font-size: 1.8rem;
-    letter-spacing: 2px;
-}
-
-.newsletter-text {
-    font-family: 'Montserrat', sans-serif;
-    color: #d1d1d1;
-    margin-bottom: 30px;
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-/* Exit Buttons */
-.newsletter-close-x {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    color: #888;
-    font-size: 28px;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.newsletter-close-btn {
-    background: none;
-    border: none;
-    color: #888;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.8rem;
-    cursor: pointer;
-    text-decoration: underline;
-    transition: color 0.3s;
-}
-
-/* Hover effects for both exit options */
-.newsletter-close-x:hover,
-.newsletter-close-btn:hover {
-    color: #9db383;
-}
-
-.kit-placeholder {
-    min-height: 60px;
-    margin-bottom: 20px;
-    color: #888;
-    font-style: italic;
-    font-size: 0.8em;
-}
-/* =========================================
-   MOBILE FIXES (Phones < 768px) - NUCLEAR VERSION
-   ========================================= */
-
-/* 1. THE ARROW EMOJI FIX */
-.arrow, 
-.index-body .panel-content .arrow {
-    color: transparent !important; 
-    text-shadow: 0 0 0 var(--brand-green) !important; 
-    -webkit-text-fill-color: transparent !important; 
-    font-variant-emoji: text !important;
-}
-
-@media (max-width: 768px) {
-    
-/* 2. THE DESCRIPTIVE PLAQUE FIX */
-    .art-panel {
-        height: 100dvh !important; 
-        /* ADDED: Push everything up slightly from the bottom toolbar */
-        padding: 2rem 0 4rem 0 !important; 
-        box-sizing: border-box !important;
+@media (max-width: 1024px) {
+    #about-main {
+        padding-top: 80px;
     }
-
-    .art-bounding-box {
-        height: 100% !important;
-        /* CHANGED: Switched from center to flex-start so content starts at top */
-        justify-content: flex-start !important;
-        gap: 15px !important; 
+    .about-content, .about-content.reverse {
+        flex-direction: column;
+        gap: 3rem;
     }
-
-    .art-image {
-        max-height: 45vh !important; 
-        width: auto !important;
+    .about-text h2 {
+        font-size: 2.5rem;
+        text-align: center;
     }
-
-    .museum-plaque {
-        width: 100% !important;
-        max-height: 35vh !important; 
-        overflow-y: auto !important; 
-        -webkit-overflow-scrolling: touch !important; 
-        padding: 1.5rem !important; 
+    .about-text p {
+        text-align: justify;
     }
-    
-    .museum-plaque h2 {
-        font-size: 2rem !important; 
-        margin-bottom: 0.5rem !important;
-    }
-
-    .museum-plaque p {
-        font-size: 1.1rem !important;
-    }
-
-    /* 3. THE "HI..." CONTACT GREETING FIX */
-    .contact-greeting {
-        white-space: normal !important; 
-        max-width: 65vw !important; 
-        right: 70px !important; 
-        bottom: 15px !important;
-        text-align: right !important; 
-    }
-    
-    .contact-popup {
-        width: 85vw !important; 
-        max-width: 320px !important;
-        right: 0 !important;
-    }
-}
-/* =========================================
-   SAFARI TASKBAR OVERLAP FIXES
-   ========================================= */
-
-/* 1. Lock the Modal to all 4 corners so Safari cannot push it down */
-.modal {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important; /* Forces it to the absolute bottom of the screen */
-    height: 100dvh !important;
-    width: 100vw !important;
-    z-index: 9999 !important;
-}
-
-/* 2. Push the content UP to clear the Safari Taskbar and Home Swipe Bar */
-@media (max-width: 768px) {
-    .modal-plaque, 
-    .museum-plaque {
-        /* Adds your normal padding + extra space for Apple's bottom UI */
-        padding-bottom: calc(2rem + env(safe-area-inset-bottom, 40px)) !important;
-    }
-}
-
-/* 3. The iOS Body Scroll Lock Class (Used in Step 2) */
-body.modal-open {
-    overflow: hidden !important;
-    position: fixed !important; /* This completely disables background scrolling on iOS */
-    width: 100% !important;
-    height: 100dvh !important;
 }

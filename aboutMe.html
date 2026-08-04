@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me - Rachel Klompas Art</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="global-fixed-bg"></div>
+    <a href="index.html" class="back-home-btn"><span class="arrow">&#9664;</span> Home</a>
+    
+    <!-- Hamburger Navigation -->
+    <div class="hamburger-container">
+        <div class="hamburger-icon" id="hamburger-icon">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a href="index.html">Home</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="aboutMe.html">About Me</a>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main id="about-main">
+        
+        <!-- Section 1: Light Background -->
+        <section class="about-section light">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>My Journey</h2>
+                    <p>Art has always been a part of who I am. My creative journey began at the age of eleven when I started painting with acrylics before moving on to oils. From those early days, I developed a deep love for expressing ideas, emotions, and stories through colour and creativity. I have always viewed the world through an artistic lens. I find myself drawn to the details that others may overlook — the way sunlight changes the colour of a flower, the contrast between shades, the textures found in everyday objects, or the beauty hidden within ordinary moments. I have always been fascinated by colour, materials, and the endless possibilities of creative expression. Whether discovering new art supplies, experimenting with different techniques, or finding inspiration in the world around me, creativity has always been a natural part of how I connect with my surroundings.</p>
+                </div>
+                <div class="about-image">
+                    <!-- Replace the src with your actual image path -->
+                    <img src="./Paintings/Abstract mockup.webp" alt="Artist at work">
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Inverted Background -->
+        <section class="about-section inverted">
+            <div class="about-content reverse">
+                <div class="about-text">
+                    <h2>Developing Style</h2>
+                    <p>During the Corona period, I dedicated time to drawing every day, strengthening my skills and discovering more of my own artistic style. This period allowed me to deepen my understanding of form, detail, and expression, while developing a stronger connection to the messages I wanted my artwork to convey. Today, I enjoy working with a variety of materials and exploring how colour, texture, and detail can transform an idea into something meaningful.</p>
+                </div>
+                <div class="about-image">
+                    <!-- Replace the src with your actual image path -->
+                    <img src="./Paintings/candles cropped mockup (1).webp" alt="Artistic details">
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Light Background -->
+        <section class="about-section light">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Finding Inspiration</h2>
+                    <p>My inspiration comes from the beauty and hidden messages found in the world around us — from nature, Jewish tradition, and the small moments that often go unnoticed. I believe that every creation has a story waiting to be uncovered. Through my art, I hope to reveal these layers of beauty and meaning, inviting people to pause, reflect, and connect with something deeper. Welcome to my creative space.</p>
+                </div>
+                <div class="about-image">
+                    <!-- Replace the src with your actual image path -->
+                    <img src="./Paintings/leaves Mockup.webp" alt="Inspiration in nature">
+                </div>
+            </div>
+        </section>
+    <div id="contact-widget-container">
+        <div id="contact-popup" class="contact-popup">
+            <div class="contact-header">
+                <h3>Have any questions?</h3>
+                <span id="close-popup">&times;</span>
+            </div>
+            <div class="contact-body">
+                <textarea id="contact-message" placeholder="Ask about an artwork, pricing, or commissions..."></textarea>
+                <div class="contact-actions">
+                    <button id="send-whatsapp" class="action-btn wa-btn">WhatsApp</button>
+                    <button id="send-email" class="action-btn email-btn">Email</button>
+                </div>
+            </div>
+        </div>
+        <div id="contact-greeting" class="contact-greeting">Hi, be in touch if there is something specific you would like</div>
+        <div id="contact-bubble" class="contact-bubble">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z" fill="#ffffff"/>
+            </svg>
+        </div>
+    </div>
+    </main>
+
+    <script src="aboutMe.js"></script>
+</body>
+</html>
