@@ -41,6 +41,26 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* =========================================
+   GLOBAL UI HIDING ON SCROLL
+   ========================================= */
+.hidden-on-scroll {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.back-home-btn, .hamburger-container, #contact-widget-container {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.back-home-btn.hidden-on-scroll, .hamburger-container.hidden-on-scroll {
+    transform: translateY(-20px);
+}
+
+#contact-widget-container.hidden-on-scroll {
+    transform: translateY(20px);
+}
+
+/* =========================================
    GLOBAL BACK BUTTON
    ========================================= */
 .back-home-btn {
@@ -59,7 +79,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--brand-green);
     font-weight: 700;
     letter-spacing: 2px;
-    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .back-home-btn:hover {
@@ -198,6 +217,12 @@ h1, h2, h3, h4, h5, h6 {
 /* =========================================
    NEW FULL-PAGE MODAL
    ========================================= */
+body.modal-open {
+    overflow: hidden !important;
+    height: 100dvh !important;
+    touch-action: none;
+}
+
 .modal { 
     display: none; position: fixed; z-index: 9999; 
     left: 0; top: 0; width: 100vw; height: 100vh; 
@@ -249,6 +274,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     .modal-nav { padding: 0 10px; }
 }
+
 /* =========================================
    INDEX PAGE STYLES
    ========================================= */
@@ -279,9 +305,9 @@ h1, h2, h3, h4, h5, h6 {
 .index-body .about-panel .panel-content { top: 2%; left: 3vw; }
 .index-body .art-panel .panel-content { bottom: 2%; right: 3vw; }
 
-.index-body .about-panel h2 { font-size: 8vw; }
+.index-body .about-panel h2 { font-size: 12vw; }
 .index-body .about-panel h3 { font-size: 4.5vw; margin-top: -5.5vw; margin-right: 2vw; } 
-.index-body .about-panel .arrow { font-size: 8vw; }
+.index-body .about-panel .arrow { font-size: 12vw; }
 
 .index-body .art-panel h2 { font-size: 12vw; }
 .index-body .art-panel h3 { font-size: 4.5vw; margin-top: -5.5vw; margin-right: 2vw; } 
@@ -360,49 +386,6 @@ h1, h2, h3, h4, h5, h6 {
 .action-btn:hover { filter: brightness(1.1); }
 .wa-btn { background-color: #25D366; } 
 .email-btn { background-color: var(--brand-grey); }
-
-/* =========================================
-   DESIGN PAGE STYLES (3D TUNNEL & MASONRY)
-   ========================================= */
-.design-body { margin: 0; overflow-x: hidden; }
-#viewport { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; perspective: 800px; overflow: hidden; z-index: 1; }
-#camera { width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; }
-
-.project-panel {
-    position: absolute; top: 50%; left: 50%; width: 60vh; height: 60vh; margin-left: -30vh; margin-top: -30vh;  
-    cursor: pointer; transition: filter 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    opacity: 0; box-shadow: 0 20px 40px rgba(0,0,0,0.2); border-radius: 4px;
-}
-.project-panel:hover { filter: brightness(1.1); box-shadow: 0 40px 80px rgba(0,0,0,0.6); transform: scale(1.02); }
-.blur-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: blur(15px) brightness(0.8); border-radius: 4px; z-index: 1; }
-.sharp-text { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-size: cover; background-position: center; background-clip: text; -webkit-background-clip: text; z-index: 2; }
-.sharp-text h2 { color: transparent !important; -webkit-text-fill-color: transparent !important; font-family: 'Cinzel', serif; font-size: 8vh; font-weight: 700; letter-spacing: 6px; margin: 0; text-align: center; width: 90%; }
-
-.masonry-content-wrapper { width: 100%; height: 100%; overflow-y: auto; padding: 6rem 4rem; position: relative; z-index: 2; }
-.masonry-header { text-align: center; margin-bottom: 4rem; }
-.masonry-header h1 { font-size: 4rem; color: var(--brand-green); margin-bottom: 1rem; }
-.masonry-header p { font-size: 1.2rem; color: var(--text-color); max-width: 600px; margin: 0 auto; }
-.masonry-grid { column-count: 3; column-gap: 2rem; max-width: 1400px; margin: 0 auto; }
-.masonry-grid img { width: 100%; margin-bottom: 2rem; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); break-inside: avoid; }
-.close-masonry { position: fixed; top: 30px; right: 40px; color: var(--brand-green); font-size: 60px; z-index: 10000; cursor: pointer; }
-
-@media (max-width: 768px) {
-    .modal-layout { display: flex !important; flex-direction: column !important; height: 100dvh !important; overflow: hidden !important; }
-    .modal-image-container { flex: 1 1 0% !important; width: 100% !important; min-height: 0 !important; display: flex !important; justify-content: center !important; align-items: center !important; padding: 70px 15px 15px 15px !important; }
-    #modalImage { max-width: 100% !important; max-height: 100% !important; width: auto !important; height: auto !important; object-fit: contain !important; box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important; }
-    .modal-plaque { flex: 0 0 auto !important; width: 100% !important; height: auto !important; display: block !important; padding: 20px 20px 30px 20px !important; text-align: center !important; background: var(--bg-color) !important; max-height: 40vh !important; overflow-y: auto !important; }
-    .modal-plaque h2 { font-size: 2rem !important; margin-bottom: 0.5rem !important; }
-    .modal-plaque p { font-size: 1rem !important; margin-bottom: 0.5rem !important; }
-}
-
-.newsletter-overlay { z-index: 9999999; display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(8px); }
-.newsletter-box { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 450px; background: var(--brand-grey); border: 2px solid var(--brand-green); border-radius: 4px; padding: 40px 30px; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.7); }
-.newsletter-title { font-family: 'Cinzel', serif; color: #9db383; margin-bottom: 12px; font-size: 1.8rem; letter-spacing: 2px; }
-.newsletter-text { font-family: 'Montserrat', sans-serif; color: #d1d1d1; margin-bottom: 30px; font-size: 0.9rem; line-height: 1.6; }
-.newsletter-close-x { position: absolute; top: 10px; right: 15px; color: #888; font-size: 28px; cursor: pointer; transition: color 0.3s; }
-.newsletter-close-btn { background: none; border: none; color: #888; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; cursor: pointer; text-decoration: underline; transition: color 0.3s; }
-.newsletter-close-x:hover, .newsletter-close-btn:hover { color: #9db383; }
-.kit-placeholder { min-height: 60px; margin-bottom: 20px; color: #888; font-style: italic; font-size: 0.8em; }
 
 /* =========================================
    HAMBURGER MENU
@@ -490,27 +473,6 @@ h1, h2, h3, h4, h5, h6 {
 /* =========================================
    ABOUT ME PAGE STYLES
    ========================================= */
-#about-container {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    width: 100%;
-    padding: 6rem 2rem;
-}
-
-.about-plaque {
-    width: 90%; 
-    max-width: 800px; 
-    text-align: center;
-    margin: 0 auto;
-}
-
-/* =========================================
-   ABOUT ME PAGE STYLES
-   ========================================= */
 #about-main {
     position: relative;
     z-index: 1;
@@ -593,7 +555,34 @@ h1, h2, h3, h4, h5, h6 {
     object-fit: cover;
 }
 
-@media (max-width: 1024px) {
+/* =========================================
+   MOBILE RESPONSIVENESS OVERRIDES
+   ========================================= */
+@media (max-width: 768px) {
+    /* Gallery Plaque Overrides */
+    .museum-plaque h2 {
+        font-size: 1.8rem !important; 
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .museum-plaque h3 {
+        font-size: 1.2rem !important;
+    }
+    
+    .museum-plaque p {
+        font-size: 1rem !important;
+    }
+
+    /* Contact Greeting Overflow Fix */
+    .contact-greeting {
+        white-space: normal;
+        max-width: 65vw;
+        text-align: right;
+        right: 75px;
+    }
+
+    /* About Me layout */
     #about-main {
         padding-top: 80px;
     }
@@ -608,4 +597,49 @@ h1, h2, h3, h4, h5, h6 {
     .about-text p {
         text-align: justify;
     }
+}
+
+/* =========================================
+   MODAL OPEN STATE - HIDE GLOBAL UI
+   ========================================= */
+body.modal-open .back-home-btn,
+body.modal-open .hamburger-container,
+body.modal-open #contact-widget-container {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* =========================================
+   CLICKABLE PLAQUE
+   ========================================= */
+.clickable-plaque {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clickable-plaque:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+}
+/* =========================================
+   CLICKABLE STATUS OVERLAY LINK
+   ========================================= */
+.status-link {
+    color: inherit;
+    text-decoration: underline; /* Adds the underline */
+    text-underline-offset: 4px; /* Drops the underline slightly for a cleaner look */
+    pointer-events: auto; /* Ensures it can be clicked */
+    transition: opacity 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Adds space between the text and the arrow */
+}
+
+.status-link:hover {
+    opacity: 0.7; /* Fades slightly when the user hovers over it */
+}
+
+.link-icon {
+    font-size: 1.4rem;
+    font-weight: 400;
 }

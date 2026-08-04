@@ -11,10 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburgerIcon.classList.toggle('active');
         });
     }
-});
 
     // =========================================
-    // 3. GLOBAL CONTACT WIDGET LOGIC
+    // 2. GLOBAL CONTACT WIDGET LOGIC
     // =========================================
     const contactBubble = document.getElementById('contact-bubble');
     const contactPopup = document.getElementById('contact-popup');
@@ -64,3 +63,20 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = `mailto:${emailAddress}?subject=Website Inquiry&body=${encodeURIComponent(msg)}`;
         });
     }
+
+    // =========================================
+    // 3. SMART SCROLL UI HIDING
+    // =========================================
+    let lastScrollY = window.scrollY;
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        const fixedUI = document.querySelectorAll('.back-home-btn, .hamburger-container, #contact-widget-container');
+        
+        if (currentScrollY > 50 && currentScrollY > lastScrollY) {
+            fixedUI.forEach(el => el.classList.add('hidden-on-scroll'));
+        } else {
+            fixedUI.forEach(el => el.classList.remove('hidden-on-scroll'));
+        }
+        lastScrollY = currentScrollY;
+    });
+});

@@ -31,14 +31,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 section.className = 'art-panel';
                 const isReverse = artIndex % 2 !== 0 ? 'reverse' : '';
 
-                // Provide a fallback in case there is no bgWord
                 const bgWordText = art.bgWord || art.title.split(' ')[0] || 'Art';
                 
-                // Construct the overlay HTML if a status message exists
-                const statusHtml = art.statusMsg && art.statusMsg.trim() !== '' 
-                    ? `<div class="status-overlay">${art.statusMsg}</div>` 
-                    : '';
+                // Construct the overlay HTML dynamically supporting links if statusLink exists
+                let statusHtml = '';
+                if (art.statusMsg && art.statusMsg.trim() !== '') {
+                    if (art.statusLink && art.statusLink.trim() !== '') {
+                        // Added 'status-link' class and an external arrow icon (&#8599;)
+                        statusHtml = `
+                            <div class="status-overlay">
+                                <a href="${art.statusLink}" target="_blank" class="status-link">
+                                    ${art.statusMsg} <span class="link-icon">&#8599;&#xFE0E;</span>
+                                </a>
+                            </div>`;
+                    } else {
+                        statusHtml = `<div class="status-overlay">${art.statusMsg}</div>`;
+                    }
+                }
 
+                // Notice: 'clickable-plaque' and 'data-art-index' are now on the main plaque div
                 section.innerHTML = `
                     <div class="art-bounding-box ${isReverse}">
                         ${statusHtml}
@@ -48,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <img class="art-image" src="${art.carouselImages[0] || art.coverImage}" alt="${art.title}" data-art-index="${artIndex}" data-img-index="0">
                             <span class="nav-arrow carousel-btn next-btn">&#10095;</span>
                         </div>
-                        <div class="museum-plaque">
+                        <div class="museum-plaque clickable-plaque" data-art-index="${artIndex}">
                             <h2>${art.title}</h2>
                             <p>${art.medium}</p>
                             <br>
@@ -95,15 +106,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalBgTitle.innerText = art.bgWord || art.title.split(' ')[0] || 'Art';
                 
                 modal.style.display = 'block';
-                document.body.style.overflow = 'hidden'; 
+                document.body.classList.add('modal-open'); 
             };
 
-            // Modal Click Listeners
+            // Modal Click Listeners (Images)
             document.querySelectorAll('.art-image').forEach(img => {
                 img.addEventListener('click', (e) => {
                     const artIdx = parseInt(e.target.getAttribute('data-art-index'));
                     const imgIdx = parseInt(e.target.getAttribute('data-img-index'));
                     openModal(artIdx, imgIdx);
+                });
+            });
+
+            // Modal Click Listeners (Entire Plaque)
+            // Using e.currentTarget ensures we get the data attribute from the plaque div, 
+            // even if the user clicks on the text inside it.
+            document.querySelectorAll('.clickable-plaque').forEach(plaque => {
+                plaque.addEventListener('click', (e) => {
+                    const artIdx = parseInt(e.currentTarget.getAttribute('data-art-index'));
+                    openModal(artIdx, 0); // Default to the first image (index 0)
                 });
             });
 
@@ -127,9 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close Modal Event
     closeBtn.addEventListener('click', () => {
         modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; 
+        document.body.classList.remove('modal-open'); 
     });
-
 
     // =========================================
     // 3. GLOBAL CONTACT WIDGET LOGIC
@@ -195,4 +215,20 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburgerIcon.classList.toggle('active');
         });
     }
+
+    // =========================================
+    // 5. SMART SCROLL UI HIDING (MAIN WINDOW)
+    // =========================================
+    let lastScrollY = window.scrollY;
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        const fixedUI = document.querySelectorAll('.back-home-btn, .hamburger-container, #contact-widget-container');
+        
+        if (currentScrollY > 50 && currentScrollY > lastScrollY) {
+            fixedUI.forEach(el => el.classList.add('hidden-on-scroll'));
+        } else {
+            fixedUI.forEach(el => el.classList.remove('hidden-on-scroll'));
+        }
+        lastScrollY = currentScrollY;
+    });
 });
