@@ -1,33 +1,9 @@
-// Google Analytics tracking setup
-(function() {
-  const gaScript = document.createElement('script');
-  gaScript.async = true;
-  gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-QY2QSX162L';
-  document.head.appendChild(gaScript);
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  window.gtag = gtag;
-
-  gtag('js', new Date());
-  gtag('config', 'G-MVXJ44FZJV');
-})();
-
 document.addEventListener('DOMContentLoaded', () => {
-    const aboutPanel = document.querySelector('.about-panel');
     const artPanel = document.querySelector('.art-panel');
     const centerLogo = document.getElementById('main-logo');
 
-    if (aboutPanel && artPanel && centerLogo) {
-        // When hovering the About side
-        aboutPanel.addEventListener('mouseenter', () => {
-            centerLogo.classList.add('hover-about');
-        });
-        aboutPanel.addEventListener('mouseleave', () => {
-            centerLogo.classList.remove('hover-about');
-        });
-
-        // When hovering the Art side
+    if (artPanel && centerLogo) {
+        // When hovering the Art side, turn the logo grey
         artPanel.addEventListener('mouseenter', () => {
             centerLogo.classList.add('hover-art');
         });

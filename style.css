@@ -303,80 +303,154 @@ body.modal-open #contact-widget-container {
 
 
 /* =========================================
-   INDEX PAGE (LANDING SPLIT SCREEN)
+   INDEX PAGE (HERO & UNIFIED LAYOUT)
    ========================================= */
-.index-body { margin: 0; overflow: hidden !important; height: 100vh !important; }
-.index-body .split-container { position: relative; width: 100vw; height: 100vh; background-color: transparent; }
-.index-body .split-panel { position: absolute; display: block; text-decoration: none; cursor: pointer; }
-.index-body .about-panel { top: 0; left: 0; width: 50%; height: 100vh; z-index: 1; }
-.index-body .art-panel { top: 0; right: 0; width: 50%; height: 100vh; z-index: 1; }
+.index-body { 
+    margin: 0; 
+    /* Removed overflow: hidden so the page can now scroll naturally! */
+}
 
-.index-body .panel-content { position: absolute; pointer-events: none; opacity: 0.5; white-space: nowrap; }
-.index-body .main-word-row { display: flex; align-items: center; gap: 1.5vw; }
-.index-body .text-stack { display: flex; flex-direction: column; align-items: flex-end; position: relative; }
+.hero-container { 
+    position: relative; 
+    width: 100vw; 
+    height: 100vh; 
+    background-color: transparent; 
+}
 
-.index-body .panel-content h2 { font-family: 'Cinzel', serif; color: #9c9c9c; margin: 0; line-height: 0.9; letter-spacing: 5px; position: relative; z-index: 1; transition: color 0.3s ease; }
-.index-body .panel-content h3 { font-family: 'Pacifico', cursive; font-weight: 500; letter-spacing: 4px; text-transform: lowercase; color: var(--brand-green); position: relative; z-index: 2; transition: color 0.3s ease; }
-.index-body .panel-content .arrow { font-family: 'Cinzel', serif; color: var(--brand-grey); transition: color 0.3s ease; }
+/* 1. The Logo & Its New Background Image */
+.center-logo { 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 10; 
+    width: 280px; 
+    pointer-events: none; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.index-body .about-panel .panel-content { top: 2%; left: 3vw; }
-.index-body .art-panel .panel-content { bottom: 2%; right: 3vw; }
+.logo-backdrop {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers the image perfectly */
+    
+    /* 100vw/vh is the full screen. Subtracting 120px creates a thick 60px border on all sides */
+    width: calc(100vw - 120px); 
+    height: calc(100vh - 120px); 
+    
+    background-image: url('./Paintings/flower.webp'); 
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px; /* Gives the inner frame modern, soft corners */
+    z-index: -1; 
+    opacity: 0.4; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3); 
+}
 
-.index-body .about-panel h2 { font-size: 12vw; }
-.index-body .about-panel h3 { font-size: 4.5vw; margin-top: -5.5vw; margin-right: 2vw; } 
-.index-body .about-panel .arrow { font-size: 12vw; }
+.center-logo svg { 
+    width: 100%; 
+    height: auto; 
+    filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.4)); 
+}
+.center-logo svg path { fill: var(--brand-green); transition: fill 0.3s ease; }
+.center-logo.hover-art .logo-art-half path { fill: var(--brand-grey); }
+.center-logo.hover-art .logo-design-half path { fill: var(--brand-grey); }
 
-.index-body .art-panel h2 { font-size: 12vw; }
-.index-body .art-panel h3 { font-size: 4.5vw; margin-top: -5.5vw; margin-right: 2vw; } 
-.index-body .art-panel .arrow { font-size: 8vw; }
+/* 2. The Art Gallery Link Text */
+.art-panel { 
+    position: absolute; 
+    top: 0; right: 0; 
+    width: 50%; height: 100vh; 
+    display: block; 
+    text-decoration: none; 
+    cursor: pointer; 
+    z-index: 1; 
+}
 
-.index-body .about-panel:hover h2, .index-body .about-panel:hover h3, .index-body .about-panel:hover .arrow { color: var(--brand-green); }
-.index-body .art-panel:hover h2, .index-body .art-panel:hover h3, .index-body .art-panel:hover .arrow { color: var(--brand-green); }
+.panel-content { 
+    position: absolute; 
+    bottom: 8%; 
+    right: 4vw; 
+    opacity: 1; 
+    white-space: nowrap; 
+    transition: opacity 0.3s ease;
+}
 
-.index-body .center-logo { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 280px; pointer-events: none; }
-.index-body .center-logo svg { width: 100%; height: auto; filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.3)); }
-.index-body .center-logo svg path { fill: var(--brand-green); transition: fill 0.3s ease; }
-.index-body .center-logo.hover-about .logo-design-half path { fill: var(--brand-grey); }
-.index-body .center-logo.hover-art .logo-art-half path { fill: var(--brand-grey); }
+.art-panel:hover .panel-content { opacity: 1; }
 
-@keyframes slideInLeft { from { transform: translateX(-100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+.main-word-row { display: flex; align-items: center; gap: 1.5vw; }
+.text-stack { display: flex; flex-direction: column; align-items: flex-end; position: relative; }
+
+/* The word "Art" in Cinzel */
+.main-word-row h2 { 
+    font-family: 'Cinzel', serif; 
+    color: #4c4c4cd0; 
+    margin: 0; 
+    font-size: 12vw; 
+    line-height: 0.9; 
+    letter-spacing: 5px; 
+    transition: color 0.3s ease; 
+    position: relative; 
+    z-index: 1;
+}
+
+/* The word "Gallery" in Pacifico */
+.main-word-row h3 { 
+    font-family: 'Pacifico', cursive; 
+    font-weight: 500; 
+    letter-spacing: 4px; 
+    text-transform: lowercase; 
+    color: var(--brand-green); 
+    position: relative; 
+    z-index: 2; 
+    transition: color 0.3s ease; 
+    font-size: 3.5vw; 
+    margin-top: -4vw; /* Pulls it up to overlap the word 'Art' */
+    margin-right: 1vw;
+}
+
+.main-word-row .arrow { 
+    font-family: 'Cinzel', serif; 
+    color: var(--brand-grey); 
+    font-size: 6vw;
+    transition: color 0.3s ease; 
+}
+
+/* Hover effects */
+.art-panel:hover h2, .art-panel:hover h3, .art-panel:hover .arrow { color: var(--brand-green); }
+
+/* Slide-in Animation */
 @keyframes slideInRight { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-.index-body .about-panel .main-word-row { animation: slideInLeft 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
-.index-body .art-panel .main-word-row { animation: slideInRight 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+.art-panel .main-word-row { animation: slideInRight 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+
 
 /* =========================================
    INDEX PAGE MOBILE EXACT TYPOGRAPHY
    ========================================= */
 @media (max-width: 768px) {
-    .index-body .about-panel { top: 0; left: 0; width: 100vw; height: 50vh; }
-    .index-body .art-panel { top: 50vh; left: 0; width: 100vw; height: 50vh; }
-    .index-body .center-logo { width: 180px; }
-    
-    .index-body .about-panel .panel-content { top: auto; bottom: 100px; left: 50%; transform: translateX(-50%); }
-    .index-body .art-panel .panel-content { bottom: auto; top: 100px; right: auto; left: 50%; transform: translateX(-50%); }
-    .index-body .main-word-row { gap: 3vw; } 
-    
-    .index-body .about-panel h3 { font-size: 3vw; margin-top: -2.5vw; margin-right: 2vw; }
-    .index-body .about-panel .arrow { font-size: 7vw; }
-    .index-body .art-panel h3 { font-size: 5vw; margin-top: -4.5vw; margin-right: 3vw; }
-    .index-body .art-panel .arrow { font-size: 12vw; }
-
-    /* HARDCODED REM SIZES FOR MOBILE SPLIT TITLES */
-    .index-body .about-panel h2, 
-    .index-body .art-panel h2 {
-        font-size: 2.2rem !important; 
-        line-height: 1 !important;
+    .art-panel { width: 100vw; }
+    .center-logo { width: 220px; }
+    .logo-backdrop { 
+        /* Subtracting 40px creates a beautiful 20px border on phones */
+        width: calc(100vw - 40px); 
+        height: calc(100vh - 40px); 
     }
     
-    .enlarge-word {
-        font-size: 4.5rem !important;
-        display: inline-block !important; 
-        line-height: 0.9 !important;
-        font-weight: bold;
+    .panel-content { 
+        bottom: 15%; 
+        right: auto; 
+        left: 50%; 
+        transform: translateX(-50%); 
     }
+    
+    /* Normalized dual-font sizing for mobile */
+    .main-word-row h2 { font-size: 14vw !important; }
+    .main-word-row h3 { font-size: 6vw !important; margin-top: -6vw !important; margin-right: 2vw !important; }
+    .main-word-row .arrow { font-size: 10vw !important; }
 }
-
-
 /* =========================================
    GALLERY PAGE STYLES
    ========================================= */
