@@ -18,6 +18,39 @@
         ]
     },
     {
+        "title": "Wildflower",
+        "bgWord": "Wildflower",
+        "medium": "Acrylic paint and acrylic medium on Premium cotton stretched canvas",
+        "size": "60 cm x 80 cm ",
+        "price": "$800",
+        "statusMsg": "",
+        "desc": "",
+        "location": "Israel",
+        "coverImage": "./Paintings/flower (1).webp",
+        "carouselImages": [
+            "./Paintings/Wildflower Cropped Mockup.webp",
+            "./Paintings/flower (1).webp",
+            "./Paintings/Wildflower mockup (1).webp"
+        ]
+    },
+    {
+        "title": "Krias Yam Suf",
+        "bgWord": "Krias",
+        "medium": "Acrylic Paint on Premium Cotton Stretched Canvas",
+        "size": "21 cm \u00d7 30 cm each",
+        "price": "$600 ",
+        "statusMsg": "",
+        "location": "South Africa",
+        "desc": "",
+        "coverImage": "./Paintings/Kriyas Yam Suf.webp",
+        "carouselImages": [
+            "./Paintings/Kriyas Yam Suf.webp",
+            "./Paintings/Yam Suf Cropped.webp",
+            "./Paintings/Yam Suf.webp"
+        ]
+    },
+    
+    {
         "title": "Soul of The Home",
         "bgWord": "Soul",
         "medium": "Acrylic paint on Premium Stretched Cotton Canvas",
