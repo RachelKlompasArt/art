@@ -7,6 +7,7 @@
         "price": "On Auction",
         "statusMsg": "On Auction at MalkaElla.co.za",
         "statusLink": "https://malkaella.co.za/product/akeida/",
+        "location": "South Africa",
         "desc": "Oil Paint on Premium Cotton Stretched Canvas",
         "coverImage": "./Paintings/Akeida Mockup.webp",
         "carouselImages": [
@@ -22,6 +23,9 @@
         "medium": "Acrylic paint on Premium Stretched Cotton Canvas",
         "size": "Square prints available",
         "price": "Size dependant",
+        "statusMsg": "",
+        "statusLink": "",
+        "location": "Israel",
         "desc": "Acrylic paint on Premium Stretched Cotton Canvas",
         "coverImage": "./Paintings/candles cropped mockup (1).webp",
         "carouselImages": [
@@ -36,6 +40,9 @@
         "medium": "Acrylic paint on Premium Stretched Cotton Canvas",
         "size": "30.5cm x 38cm",
         "price": "$250",
+        "statusMsg": "",
+        "statusLink": "",
+        "location": "South Africa",
         "desc": "Acrylic paint on Premium Stretched Cotton Canvas",
         "coverImage": "./Paintings/peacfull mockup cropped.png",
         "carouselImages": [
@@ -50,6 +57,9 @@
         "medium": "Oil paint on Premium Stretched Cotton Canvas",
         "size": "60cm x 84cm",
         "price": "$700",
+        "statusMsg": "",
+        "statusLink": "",
+        "location": "Israel",
         "desc": "Oil paint on Premium Stretched Cotton Canvas",
         "coverImage": "./Paintings/leaves Mockup.webp",
         "carouselImages": [
@@ -64,6 +74,9 @@
         "medium": "Acrylic paint on Premium Cotton Stretched Canvas",
         "size": "20cm x 30cm",
         "price": "$250",
+        "statusMsg": "",
+        "statusLink": "",
+        "location": "South Africa",
         "desc": "Acrylic paint on Premium Cotton Stretched Canvas",
         "coverImage": "./Paintings/Abstract mockup.webp",
         "carouselImages": [
@@ -78,6 +91,9 @@
         "medium": "Oil paint on Premium Cotton Stretched Canvas",
         "size": "60cm x 60cm",
         "price": "$600",
+        "statusMsg": "",
+        "statusLink": "",
+        "location": "Israel",
         "desc": "Oil paint on Premium Cotton Stretched Canvas",
         "coverImage": "./Paintings/black and white water mock up.webp",
         "carouselImages": [
@@ -92,6 +108,9 @@
         "medium": "Mixed Media: Acrylic paint, Charcoal and Soft Pastels on Premium Cotton Stretched Canvas",
         "size": "90cm x 90cm",
         "price": "$850",
+        "statusMsg": "",
+        "statusLink": "",
+        "location": "South Africa",
         "desc": "Mixed Media: Acrylic paint, Charcoal and Soft Pastels on Premium Cotton Stretched Canvas",
         "coverImage": "./Paintings/blue boys mockup.webp",
         "carouselImages": [
@@ -106,6 +125,9 @@
         "medium": "Acrylic paint on Premium Cotton Stretched Canvas",
         "size": "30cm x 28cm",
         "price": "$220",
+        "statusMsg": "",
+        "statusLink": "",
+        "location": "Israel",
         "desc": "Acrylic paint on Premium Cotton Stretched Canvas",
         "coverImage": "./Paintings/roses mockup.webp",
         "carouselImages": [
@@ -120,6 +142,9 @@
         "medium": "Oil Paint on Premium Cotton Stretched Canvas",
         "size": "61cm x 61cm",
         "price": "$650",
+        "statusMsg": "",
+        "statusLink": "",
+        "location": "South Africa",
         "desc": "Oil Paint on Premium Cotton Stretched Canvas",
         "coverImage": "./Paintings/Shtetle cropped mockup.webp",
         "carouselImages": [
@@ -134,6 +159,9 @@
         "medium": "Textured Acrylic paint on Premium Cotton Stretched Canvas",
         "size": "25cm x 25cm",
         "price": "$200",
+        "statusMsg": "",
+        "statusLink": "",
+        "location": "Israel",
         "desc": "Textured Acrylic paint on Premium Cotton Stretched Canvas",
         "coverImage": "./Paintings/textured forest mockup.webp",
         "carouselImages": [
@@ -148,6 +176,9 @@
         "medium": "Textured Acrylic paint on Premium Cotton Stretched Canvas",
         "size": "Prints available",
         "price": "Size dependant",
+        "statusMsg": "",
+        "statusLink": "",
+        "location": "South Africa",
         "desc": "Prints on request",
         "coverImage": "./Paintings/waterfall mockup.webp",
         "carouselImages": [

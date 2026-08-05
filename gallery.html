@@ -11,17 +11,43 @@
     <div class="global-fixed-bg"></div>
     <a href="index.html" class="back-home-btn"><span class="arrow">&#9664;&#xFE0E;</span> Home</a>
     
-    <!-- Hamburger Navigation -->
-    <div class="hamburger-container">
-        <div class="hamburger-icon" id="hamburger-icon">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+<!-- Top Right Navigation & Cart -->
+    <div class="top-right-nav">
+        <!-- Cart Icon -->
+        <div class="cart-icon-container" id="cart-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 18C5.9 18 5.01 18.9 5.01 20C5.01 21.1 5.9 22 7 22C8.1 22 9 21.1 9 20C9 18.9 8.1 18 7 18ZM1 2V4H3L6.6 11.59L5.24 14.04C5.09 14.32 5 14.65 5 15C5 16.1 5.9 17 7 17H19V15H7.42C7.28 15 7.17 14.89 7.17 14.75L7.2 14.63L8.1 13H15.55C16.3 13 16.96 12.59 17.3 11.97L20.88 5.53C20.96 5.38 21 5.19 21 5C21 4.45 20.55 4 20 4H5.21L4.27 2H1ZM17 18C15.9 18 15.01 18.9 15.01 20C15.01 21.1 15.9 22 17 22C18.1 22 19 21.1 19 20C19 18.9 18.1 18 17 18Z" fill="var(--brand-green)"/>
+            </svg>
+            <span class="cart-count" id="cart-count">0</span>
         </div>
-        <div class="dropdown-menu" id="dropdown-menu">
-            <a href="index.html">Home</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="aboutMe.html">About Me</a>
+
+        <!-- Hamburger Menu -->
+        <div class="hamburger-container">
+            <div class="hamburger-icon" id="hamburger-icon">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu">
+                <a href="aboutMe.html">About Me</a>
+                <a href="gallery.html">Art Gallery</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide-out Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Collection</h2>
+            <span id="close-cart" class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items injected here via JS -->
+        </div>
+        <div class="cart-footer">
+            <button id="checkout-email-btn" class="checkout-btn email-checkout">Order via Email</button>
+            <button id="checkout-wa-btn" class="checkout-btn wa-checkout">Order via WhatsApp</button>
+            <p class="checkout-note">Apologies for the inconvenience, we do not have a card option availible yet. Rachel will reply directly with banking details & custom shipping rates.</p>
         </div>
     </div>
 

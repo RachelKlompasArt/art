@@ -15,29 +15,129 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalPrevBtn = document.getElementById('prev');
     const modalNextBtn = document.getElementById('next');
 
+    // Cart Elements
+    const cartIcon = document.getElementById('cart-icon');
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const closeCartBtn = document.getElementById('close-cart');
+    const cartCount = document.getElementById('cart-count');
+    const cartItemsContainer = document.getElementById('cart-items');
+    
+    const checkoutEmailBtn = document.getElementById('checkout-email-btn');
+    const checkoutWaBtn = document.getElementById('checkout-wa-btn');
+
     // =========================================
-    // 2. FETCH DATA & BUILD GALLERY
+    // 2. CART & ONE-TAP CHECKOUT LOGIC
+    // =========================================
+    let cart = JSON.parse(localStorage.getItem('artCart')) || [];
+
+    function updateCartUI() {
+        // Update bubble count
+        if (cartCount) cartCount.innerText = cart.length;
+
+        // Populate sidebar
+        if (cartItemsContainer) {
+            cartItemsContainer.innerHTML = '';
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Your collection is currently empty.</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'cart-item';
+                    itemDiv.innerHTML = `
+                        <div class="cart-item-info">
+                            <h4>${item.title}</h4>
+                            <p>${item.price} | Ships from: ${item.location}</p>
+                        </div>
+                        <span class="remove-item" data-index="${index}">&times;</span>
+                    `;
+                    cartItemsContainer.appendChild(itemDiv);
+                });
+
+                // Bind remove buttons
+                document.querySelectorAll('.remove-item').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const idx = e.target.getAttribute('data-index');
+                        cart.splice(idx, 1);
+                        localStorage.setItem('artCart', JSON.stringify(cart));
+                        updateCartUI();
+                    });
+                });
+            }
+        }
+    }
+
+    // Toggle Cart Sidebar
+    if (cartIcon) {
+        cartIcon.addEventListener('click', () => {
+            cartSidebar.classList.add('open');
+        });
+    }
+    if (closeCartBtn) {
+        closeCartBtn.addEventListener('click', () => {
+            cartSidebar.classList.remove('open');
+        });
+    }
+
+    // Helper: Construct Order Summary
+    function buildOrderSummary() {
+        let text = "Hi Rachel,my adress is:\n\nI would like to purchase the following artwork(s):\n\n";
+        cart.forEach((item, index) => {
+            text += `${index + 1}. "${item.title}"\n   - Price: ${item.price}\n   - Ships from: ${item.location}\n\n`;
+        });
+        text += "Please reply with your banking details and the shipping cost to my address.\n\nThank you!";
+        return text;
+    }
+
+    // Option A: Order via Email
+    if (checkoutEmailBtn) {
+        checkoutEmailBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert("Your collection is empty.");
+                return;
+            }
+            const rawText = buildOrderSummary();
+            const emailAddress = "rachel@rachelklompas.com";
+            const subject = "Artwork Purchase Request";
+            window.location.href = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(rawText)}`;
+        });
+    }
+
+    // Option B: Order via WhatsApp
+    if (checkoutWaBtn) {
+        checkoutWaBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert("Your collection is empty.");
+                return;
+            }
+            const rawText = buildOrderSummary();
+            const phoneNumber = "+27768606099"; // Your phone number
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(rawText)}`, '_blank');
+        });
+    }
+
+    // Initialize cart UI on load
+    updateCartUI();
+
+    // =========================================
+    // 3. FETCH DATA & BUILD GALLERY
     // =========================================
     fetch('./gallery_data.json')
         .then(response => response.json())
         .then(artworks => {
-            
             let currentModalArtIndex = 0;
             let currentModalImgIndex = 0;
 
-            // Build the Scrolling Gallery with In-Container Carousels
+            // Build the Scrolling Gallery
             artworks.forEach((art, artIndex) => {
                 const section = document.createElement('section');
                 section.className = 'art-panel';
                 const isReverse = artIndex % 2 !== 0 ? 'reverse' : '';
-
                 const bgWordText = art.bgWord || art.title.split(' ')[0] || 'Art';
+                const locationText = art.location ? art.location : 'Israel'; // Default fallback
                 
-                // Construct the overlay HTML dynamically supporting links if statusLink exists
                 let statusHtml = '';
                 if (art.statusMsg && art.statusMsg.trim() !== '') {
                     if (art.statusLink && art.statusLink.trim() !== '') {
-                        // Added 'status-link' class and an external arrow icon (&#8599;)
                         statusHtml = `
                             <div class="status-overlay">
                                 <a href="${art.statusLink}" target="_blank" class="status-link">
@@ -49,20 +149,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
-                // Notice: 'clickable-plaque' and 'data-art-index' are now on the main plaque div
                 section.innerHTML = `
                     <div class="art-bounding-box ${isReverse}">
                         ${statusHtml}
                         <div class="bg-title">${bgWordText}</div>
                         <div class="image-carousel">
-                            <span class="nav-arrow carousel-btn prev-btn">&#10094;</span>
+                            <span class="nav-arrow carousel-btn prev-btn">&#10094;&#xFE0E;</span>
                             <img class="art-image" src="${art.carouselImages[0] || art.coverImage}" alt="${art.title}" data-art-index="${artIndex}" data-img-index="0">
-                            <span class="nav-arrow carousel-btn next-btn">&#10095;</span>
+                            <span class="nav-arrow carousel-btn next-btn">&#10095;&#xFE0E;</span>
                         </div>
                         <div class="museum-plaque clickable-plaque" data-art-index="${artIndex}">
                             <h2>${art.title}</h2>
                             <p>${art.medium}</p>
-                            <br>
+                            <span class="location-badge">Ships from: ${locationText}</span>
                             <h3>Price: ${art.price}</h3>
                         </div>
                     </div>
@@ -91,6 +190,59 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
+            // Add the "Add to Cart" button to the Modal HTML structure dynamically
+            const modalPlaque = document.querySelector('.modal-plaque');
+            if (modalPlaque && !document.getElementById('modalAddToCart')) {
+                const cartBtn = document.createElement('button');
+                cartBtn.id = 'modalAddToCart';
+                cartBtn.className = 'add-to-cart-btn';
+                cartBtn.innerText = 'Add to Cart';
+                
+                // Also add a location badge to the modal
+                const modalLocBadge = document.createElement('span');
+                modalLocBadge.id = 'modalLocation';
+                modalLocBadge.className = 'location-badge';
+                
+                // Insert them into the plaque
+                modalPlaque.insertBefore(modalLocBadge, document.getElementById('modalPrice'));
+                modalPlaque.appendChild(cartBtn);
+
+                // Bind Cart Button Click
+                cartBtn.addEventListener('click', () => {
+                    const art = artworks[currentModalArtIndex];
+                    // Check if already in cart
+                    const exists = cart.find(item => item.title === art.title);
+                    if(!exists) {
+                        cart.push({
+                            title: art.title,
+                            price: art.price,
+                            location: art.location || 'Israel'
+                        });
+                        localStorage.setItem('artCart', JSON.stringify(cart));
+                        updateCartUI();
+                        
+                        // Force the sidebar to slide out immediately
+                        if (cartSidebar) {
+                            cartSidebar.classList.add('open');
+                        }
+                        
+                        // Visual feedback
+                        cartBtn.innerText = 'Added to Collection!';
+                        cartBtn.style.backgroundColor = 'var(--brand-grey)';
+                        setTimeout(() => {
+                            cartBtn.innerText = 'Add to Cart';
+                            cartBtn.style.backgroundColor = 'var(--brand-green)';
+                        }, 2000);
+                    } else {
+                        // Open cart even if it already exists, as a convenience
+                        if (cartSidebar) {
+                            cartSidebar.classList.add('open');
+                        }
+                        alert("This artwork is already in your collection.");
+                    }
+                });
+            }
+
             // Open Full-Page Modal Function
             const openModal = (artIndex, imgIndex) => {
                 currentModalArtIndex = artIndex;
@@ -104,7 +256,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalSize.innerText = `Dimensions: ${art.size}`;
                 modalPrice.innerText = `Price: ${art.price}`;
                 modalBgTitle.innerText = art.bgWord || art.title.split(' ')[0] || 'Art';
+                document.getElementById('modalLocation').innerText = `Ships from: ${art.location || 'Israel'}`;
                 
+                // Logic to hide the "Add to Cart" button if the item is Sold or on Auction
+                const cartBtn = document.getElementById('modalAddToCart');
+                if (art.statusMsg && art.statusMsg.trim() !== '') {
+                    cartBtn.style.display = 'none'; // Hide button if unavailable
+                } else {
+                    cartBtn.style.display = 'block'; // Show button if available
+                }
+
                 modal.style.display = 'block';
                 document.body.classList.add('modal-open'); 
             };
@@ -119,12 +280,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // Modal Click Listeners (Entire Plaque)
-            // Using e.currentTarget ensures we get the data attribute from the plaque div, 
-            // even if the user clicks on the text inside it.
             document.querySelectorAll('.clickable-plaque').forEach(plaque => {
                 plaque.addEventListener('click', (e) => {
                     const artIdx = parseInt(e.currentTarget.getAttribute('data-art-index'));
-                    openModal(artIdx, 0); // Default to the first image (index 0)
+                    openModal(artIdx, 0); 
                 });
             });
 
@@ -146,13 +305,15 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error("Error loading gallery JSON data:", error));
 
     // Close Modal Event
-    closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-        document.body.classList.remove('modal-open'); 
-    });
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open'); 
+        });
+    }
 
     // =========================================
-    // 3. GLOBAL CONTACT WIDGET LOGIC
+    // 4. GLOBAL CONTACT WIDGET LOGIC
     // =========================================
     const contactBubble = document.getElementById('contact-bubble');
     const contactPopup = document.getElementById('contact-popup');
@@ -204,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // 4. NAVIGATION LOGIC
+    // 5. NAVIGATION LOGIC
     // =========================================
     const hamburgerIcon = document.getElementById('hamburger-icon');
     const dropdownMenu = document.getElementById('dropdown-menu');
@@ -217,12 +378,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // 5. SMART SCROLL UI HIDING (MAIN WINDOW)
+    // 6. SMART SCROLL UI HIDING (MAIN WINDOW)
     // =========================================
     let lastScrollY = window.scrollY;
     window.addEventListener('scroll', () => {
         const currentScrollY = window.scrollY;
-        const fixedUI = document.querySelectorAll('.back-home-btn, .hamburger-container, #contact-widget-container');
+        // Targets the home button, the new cart/hamburger nav container, and the contact widget
+        const fixedUI = document.querySelectorAll('.back-home-btn, .top-right-nav, #contact-widget-container');
         
         if (currentScrollY > 50 && currentScrollY > lastScrollY) {
             fixedUI.forEach(el => el.classList.add('hidden-on-scroll'));
