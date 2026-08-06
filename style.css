@@ -104,7 +104,7 @@ body.modal-open #contact-widget-container {
 }
 
 /* =========================================
-   TOP RIGHT NAV (CART & HAMBURGER WRAPPER)
+   TOP RIGHT NAV (CART, SEARCH & HAMBURGER)
    ========================================= */
 .top-right-nav {
     position: fixed;
@@ -123,9 +123,8 @@ body.modal-open #contact-widget-container {
     }
 }
 
-/* =========================================
-   CART ICON & BADGE
-   ========================================= */
+/* Identical Styling for Search & Cart Icons */
+.search-icon-container,
 .cart-icon-container {
     position: relative;
     cursor: pointer;
@@ -138,8 +137,17 @@ body.modal-open #contact-widget-container {
     justify-content: center;
     align-items: center;
 }
-.cart-icon-container:hover { background: rgba(255, 255, 255, 1); }
-.cart-icon-container svg { width: 24px; height: 24px; }
+
+.search-icon-container:hover,
+.cart-icon-container:hover { 
+    background: rgba(255, 255, 255, 1); 
+}
+
+.search-icon-container svg,
+.cart-icon-container svg { 
+    width: 24px; 
+    height: 24px; 
+}
 
 .cart-count {
     position: absolute;
@@ -228,6 +236,133 @@ body.modal-open #contact-widget-container {
 }
 
 /* =========================================
+   SEARCH & FILTER DROPDOWN PANEL
+   ========================================= */
+.search-filter-panel {
+    position: fixed;
+    top: 85px; 
+    right: 40px;
+    width: 360px;
+    max-width: calc(100vw - 40px);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(157, 179, 131, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    z-index: 9999;
+    
+    /* Animation state when hidden */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.97);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.search-filter-panel.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.search-filter-content {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Search Bar Input Row */
+.search-bar-row {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 25px;
+    padding: 6px 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-bar-row:focus-within {
+    border-color: var(--brand-green);
+    box-shadow: 0 0 8px rgba(157, 179, 131, 0.3);
+}
+
+.search-field-icon {
+    width: 18px;
+    height: 18px;
+    stroke: var(--brand-grey);
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    background: transparent;
+}
+
+.close-search-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    color: var(--brand-grey);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 4px;
+    transition: color 0.2s ease;
+}
+
+.close-search-btn:hover {
+    color: var(--brand-green);
+}
+
+/* Filter Options Row */
+.filter-options-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: var(--brand-grey);
+}
+
+.sort-select {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    padding: 6px 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    background: #ffffff;
+    outline: none;
+    cursor: pointer;
+}
+
+.sort-select:focus {
+    border-color: var(--brand-green);
+}
+
+@media (max-width: 768px) {
+    .search-filter-panel {
+        top: 75px;
+        right: 20px;
+    }
+}
+@media (max-width: 480px) {
+    .search-filter-panel {
+        left: 20px;
+        right: 20px;
+        width: auto;
+    }
+}
+
+/* =========================================
    CART SIDEBAR & DUAL CHECKOUT BUTTONS
    ========================================= */
 .cart-sidebar {
@@ -307,7 +442,6 @@ body.modal-open #contact-widget-container {
    ========================================= */
 .index-body { 
     margin: 0; 
-    /* Removed overflow: hidden so the page can now scroll naturally! */
 }
 
 .hero-container { 
@@ -335,16 +469,15 @@ body.modal-open #contact-widget-container {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centers the image perfectly */
+    transform: translate(-50%, -50%); 
     
-    /* 100vw/vh is the full screen. Subtracting 120px creates a thick 60px border on all sides */
     width: calc(100vw - 120px); 
     height: calc(100vh - 120px); 
     
     background-image: url('./Paintings/peacefull\ \(1\).webp'); 
     background-size: cover;
     background-position: center;
-    border-radius: 15px; /* Gives the inner frame modern, soft corners */
+    border-radius: 15px; 
     z-index: -1; 
     opacity: 0.4; 
     box-shadow: 0 20px 50px rgba(0,0,0,0.3); 
@@ -408,7 +541,7 @@ body.modal-open #contact-widget-container {
     z-index: 2; 
     transition: color 0.3s ease; 
     font-size: 3.5vw; 
-    margin-top: -4vw; /* Pulls it up to overlap the word 'Art' */
+    margin-top: -4vw; 
     margin-right: 1vw;
 }
 
@@ -434,7 +567,6 @@ body.modal-open #contact-widget-container {
     .art-panel { width: 100vw; }
     .center-logo { width: 220px; }
     .logo-backdrop { 
-        /* Subtracting 40px creates a beautiful 20px border on phones */
         width: calc(100vw - 40px); 
         height: calc(100vh - 40px); 
     }
@@ -594,7 +726,6 @@ body.modal-open { overflow: hidden !important; height: 100dvh !important; }
     right: 75px; 
     bottom: 10px; 
     
-    /* Changed from mahogany (red) to white with a green border */
     background-color: #ffffff; 
     color: var(--brand-green); 
     border: 1px solid var(--brand-green);
@@ -636,13 +767,13 @@ body.modal-open { overflow: hidden !important; height: 100dvh !important; }
     .contact-greeting { white-space: normal; max-width: 65vw; text-align: right; right: 75px; }
 }
 
+
 /* =========================================
    LANDSCAPE (HORIZONTAL) MOBILE FIXES
    ========================================= */
 @media (max-width: 900px) and (orientation: landscape) {
     
     /* 1. Fix the Landing Page (Index) */
-    /* Put the panels back side-by-side instead of top/bottom */
     .index-body .about-panel { top: 0; left: 0; width: 50vw; height: 100vh; }
     .index-body .art-panel { top: 0; right: 0; width: 50vw; height: 100vh; left: auto; }
     
@@ -660,7 +791,6 @@ body.modal-open { overflow: hidden !important; height: 100dvh !important; }
     .index-body .about-panel .arrow, .index-body .art-panel .arrow { font-size: 2rem; }
 
     /* 2. Fix the Full-Page Image Modal */
-    /* Put image on the left, plaque on the right */
     .modal-layout { display: flex; flex-direction: row; height: 100vh; overflow: hidden; }
     .modal-image-container { width: 50%; height: 100%; padding: 2rem; }
     .modal-plaque { width: 50%; height: 100%; min-height: 100vh; padding: 2rem 3rem; overflow-y: auto; text-align: left; }
@@ -676,6 +806,5 @@ body.modal-open { overflow: hidden !important; height: 100dvh !important; }
     .top-right-nav { top: 15px; right: 15px; }
     .back-home-btn { top: 15px; left: 15px; }
     
-    /* Tuck the contact widget slightly out of the way */
     #contact-widget-container { bottom: 15px; right: 15px; }
 }

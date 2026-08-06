@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gallery - Rachel Klompas Art</title>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXJ44FZJV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MVXJ44FZJV');
+    </script>
+    
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -11,8 +21,15 @@
     <div class="global-fixed-bg"></div>
     <a href="index.html" class="back-home-btn"><span class="arrow">&#9664;&#xFE0E;</span> Home</a>
     
-<!-- Top Right Navigation & Cart -->
+    <!-- Top Right Navigation & Cart -->
     <div class="top-right-nav">
+        <!-- Brand-styled Search Icon Button -->
+        <div class="search-icon-container" id="searchToggleBtn" title="Search Gallery">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="var(--brand-green)"/>
+                </svg>
+            </div>
+
         <!-- Cart Icon -->
         <div class="cart-icon-container" id="cart-icon">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,6 +48,31 @@
             <div class="dropdown-menu" id="dropdown-menu">
                 <a href="index.html#about-main">About Me</a>
                 <a href="gallery.html">Art Gallery</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Search & Filter Panel (Appears on click) -->
+    <div id="searchFilterPanel" class="search-filter-panel">
+        <div class="search-filter-content">
+            <!-- Row 1: Search Bar -->
+            <div class="search-bar-row">
+                <svg class="search-field-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search title, medium..." autocomplete="off">
+                <button id="closeSearchBtn" class="close-search-btn" aria-label="Close Search">&times;</button>
+            </div>
+
+            <!-- Row 2: Filter & Sort Options -->
+            <div class="filter-options-row">
+                <label for="sortPrice">Sort artworks:</label>
+                <select id="sortPrice" class="sort-select">
+                    <option value="default">Default Order</option>
+                    <option value="low-high">Price: Low to High</option>
+                    <option value="high-low">Price: High to Low</option>
+                </select>
             </div>
         </div>
     </div>
