@@ -273,6 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.location.hash === '#malkaella') {
                 history.replaceState(null, null, window.location.pathname);
                 const redirectBanner = document.createElement('div');
+                redirectBanner.id = 'malkaella-redirect-banner'; // Given an ID so we can delete it later
                 redirectBanner.innerHTML = `
                     <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.4); z-index: 999998;"></div>
                     <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; max-width: 450px; background: rgba(255, 255, 255, 0.98); z-index: 999999; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 40px 30px; border-left: 4px solid var(--brand-green); box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
@@ -283,8 +284,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
                 document.body.appendChild(redirectBanner);
-                setTimeout(() => { window.location.href = "https://malkaella.co.za/product/akeida/"; }, 4000);
+                
+                // Reduced timeout to 1.5 seconds
+                setTimeout(() => { 
+                    window.location.href = "https://malkaella.co.za/product/akeida/"; 
+                }, 1500); 
             }
         })
         .catch(error => console.error("Error loading gallery JSON data:", error));
+});
+
+// =========================================
+// IOS/ANDROID BACK BUTTON FIX
+// =========================================
+// If the user presses "Back" from the auction site, this instantly deletes the popup 
+// from the mobile browser cache so they see your beautiful gallery again.
+window.addEventListener('pageshow', () => {
+    const banner = document.getElementById('malkaella-redirect-banner');
+    if (banner) {
+        banner.remove();
+    }
 });
