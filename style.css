@@ -368,10 +368,10 @@ body.modal-open #contact-widget-container {
 .cart-sidebar {
     position: fixed;
     top: 0;
+    bottom: 0; /* This replaces height: 100vh and fixes the mobile hiding issue! */
     right: -400px;
     width: 100%;
     max-width: 400px;
-    height: 100vh;
     background-color: var(--bg-color);
     box-shadow: -10px 0 30px rgba(0,0,0,0.1);
     z-index: 100000;
@@ -379,6 +379,17 @@ body.modal-open #contact-widget-container {
     flex-direction: column;
     transition: right 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+
+.cart-footer {
+    /* Uses dynamic padding to ensure it sits safely above the iPhone swipe bar */
+    padding: 20px 20px calc(25px + env(safe-area-inset-bottom)); 
+    border-top: 1px solid #ddd;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .cart-sidebar.open { right: 0; }
 
 .cart-header {
@@ -411,14 +422,6 @@ body.modal-open #contact-widget-container {
 .cart-item-info p { margin: 0; font-size: 0.9rem; color: var(--brand-grey); }
 .remove-item { color: red; cursor: pointer; font-size: 1.5rem; font-weight: bold; }
 
-.cart-footer {
-    padding: 25px 20px;
-    border-top: 1px solid #ddd;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
 .checkout-btn {
     width: 100%;
     padding: 14px;

@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         checkoutEmailBtn.addEventListener('click', () => {
             if (cart.length === 0) { alert("Your collection is empty."); return; }
             const rawText = buildOrderSummary();
-            window.location.href = `mailto:rachel@rachelklompas.com?subject=${encodeURIComponent("Artwork Purchase Request")}&body=${encodeURIComponent(rawText)}`;
+            window.location.href = `mailto:rachel@rachelklompasart.com?subject=${encodeURIComponent("Artwork Purchase Request")}&body=${encodeURIComponent(rawText)}`;
         });
     }
 
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(emailBtn) {
         emailBtn.addEventListener('click', () => {
             const msg = messageBox ? messageBox.value : '';
-            window.location.href = `mailto:rachel@rachelklompas.com?subject=Website Inquiry&body=${encodeURIComponent(msg)}`;
+            window.location.href = `mailto:rachel@rachelklompasart.com?subject=Website Inquiry&body=${encodeURIComponent(msg)}`;
         });
     }
 
