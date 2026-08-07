@@ -266,42 +266,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Initial render
             renderGallery(allArtworks);
-
-            // =========================================
-            // AUCTION REDIRECT INTERCEPTOR
+// =========================================
+            // AUCTION REDIRECT INTERCEPTOR (BULLETPROOF FIX)
             // =========================================
             if (window.location.hash === '#malkaella') {
-                history.replaceState(null, null, window.location.pathname);
-                const redirectBanner = document.createElement('div');
-                redirectBanner.id = 'malkaella-redirect-banner'; // Given an ID so we can delete it later
-                redirectBanner.innerHTML = `
-                    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.4); z-index: 999998;"></div>
-                    <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; max-width: 450px; background: rgba(255, 255, 255, 0.98); z-index: 999999; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 40px 30px; border-left: 4px solid var(--brand-green); box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
-                        <h2 style="font-family: 'Cinzel', serif; color: var(--brand-green); font-size: 2rem; margin-bottom: 15px;">Heading to the Auction...</h2>
-                        <p style="font-family: 'Montserrat', sans-serif; color: var(--brand-grey); font-size: 1rem; line-height: 1.6; margin-bottom: 25px;">You are now leaving Rachel Klompas Art to view <strong>"Akeida"</strong> on the Malka Ella platform.</p>
-                        <div style="border: 3px solid rgba(157, 179, 131, 0.2); border-top: 3px solid var(--brand-green); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;"></div>
-                        <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
-                    </div>
-                `;
-                document.body.appendChild(redirectBanner);
                 
-                // Reduced timeout to 1.5 seconds
-                setTimeout(() => { 
-                    window.location.href = "https://malkaella.co.za/product/akeida/"; 
-                }, 1500); 
+                // 1. Check if they just clicked "Back" from the auction house
+                if (sessionStorage.getItem('wentToAuction') === 'true') {
+                    
+                    // They are coming backwards! Clear the receipt so it works next time
+                    sessionStorage.removeItem('wentToAuction');
+                    
+                    // Clean the URL so they are just on the normal, safe gallery page
+                    history.replaceState(null, null, window.location.pathname);
+                    
+                    // (We do NOT show the banner here, so they can just browse your art!)
+                    
+                } else {
+                    // 2. This is their FIRST time arriving from your marketing link.
+                    
+                    // Drop the receipt in the browser's memory
+                    sessionStorage.setItem('wentToAuction', 'true');
+
+                    // Build the visual banner
+                    const redirectBanner = document.createElement('div');
+                    redirectBanner.id = 'malkaella-redirect-banner'; 
+                    redirectBanner.innerHTML = `
+                        <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.4); z-index: 999998;"></div>
+                        <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; max-width: 450px; background: rgba(255, 255, 255, 0.98); z-index: 999999; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 40px 30px; border-left: 4px solid var(--brand-green); box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
+                            <h2 style="font-family: 'Cinzel', serif; color: var(--brand-green); font-size: 2rem; margin-bottom: 15px;">Heading to the Auction...</h2>
+                            <p style="font-family: 'Montserrat', sans-serif; color: var(--brand-grey); font-size: 1rem; line-height: 1.6; margin-bottom: 25px;">You are now leaving Rachel Klompas Art to view <strong>"Akeida"</strong> on the Malka Ella platform.</p>
+                            <div style="border: 3px solid rgba(157, 179, 131, 0.2); border-top: 3px solid var(--brand-green); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;"></div>
+                            <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+                        </div>
+                    `;
+                    document.body.appendChild(redirectBanner);
+                    
+                    // Give it 2 full seconds. (Anything faster gets flagged by Android as spam)
+                    setTimeout(() => { 
+                        window.location.href = "https://malkaella.co.za/product/akeida/"; 
+                    }, 2000); 
+                }
             }
         })
         .catch(error => console.error("Error loading gallery JSON data:", error));
 });
 
 // =========================================
-// IOS/ANDROID BACK BUTTON FIX
+// APPLE / IOS SAFARI BACK BUTTON FIX
 // =========================================
-// If the user presses "Back" from the auction site, this instantly deletes the popup 
-// from the mobile browser cache so they see your beautiful gallery again.
-window.addEventListener('pageshow', () => {
-    const banner = document.getElementById('malkaella-redirect-banner');
-    if (banner) {
-        banner.remove();
+// If Safari tries to load the frozen page from memory, this forces a hard refresh 
+// so the code above runs properly and clears the screen!
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+        window.location.reload();
     }
 });
