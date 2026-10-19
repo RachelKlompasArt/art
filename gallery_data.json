@@ -1,5 +1,19 @@
 [
     {
+        "title": "Commision Piece",
+        "bgWord": "Commision",
+        "medium": "Perfect for your taste",
+        "size": "Perfect for your space ",
+        "price": "Perfect for your budget",
+        "location": "Israel",
+        "statusMsg": "To begin...Click here!!!",
+        "statusLink": "https://wa.me/+27768606099?text=Hi%2C%20I%20would%20love%20to%20create%20a%20painting%20in%20which%3A",
+        "coverImage": "./Paintings/Commision Piece.webp",
+        "carouselImages": [
+            "./Paintings/Commision Piece.webp"
+        ]
+    },
+    {
         "title": "Waters Above and Below",
         "bgWord": "Waters",
         "medium": "Acrylic Paint on Premium Cotton Stretched Canvas",
@@ -47,7 +61,7 @@
             "./Paintings/Yam Suf.webp"
         ]
     },
-     {
+    {
         "title": "Soul of The Home",
         "bgWord": "Soul",
         "medium": "Acrylic paint on Premium Stretched Cotton Canvas",
