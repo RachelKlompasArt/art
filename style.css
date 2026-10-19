@@ -654,7 +654,7 @@ body.modal-open #contact-widget-container {
     .image-carousel, .museum-plaque { width: 100%; height: auto; }
     .art-image { max-height: 60vh; }
     .museum-plaque { border-left: none; border-top: 4px solid var(--brand-green); padding: 2.5rem; }
-    .status-overlay { top: 10px; left: 0px; font-size: 1.2rem; padding: 10px 30px; }
+    .status-overlay { top: 10px; left: 0px; font-size: 1rem; padding: 10px 30px; }
 }
 
 
