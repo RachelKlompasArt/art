@@ -1,11 +1,26 @@
 [
-
+    {
+        "title": "Waters Above and Below",
+        "bgWord": "Waters",
+        "medium": "Acrylic Paint on Premium Cotton Stretched Canvas",
+        "size": "60 cm x 80 cm",
+        "price": "$780",
+        "location": "Israel",
+        "statusMsg": "",
+        "statusLink": "",
+        "coverImage": "./Paintings/Waters above and below Cropped.webp",
+        "carouselImages": [
+            "./Paintings/Waters above and below Cropped.webp",
+            "./Paintings/Waters above and below Mockup.webp",
+            "./Paintings/Waters above and below.webp"
+        ]
+    },
     {
         "title": "Wildflower",
         "bgWord": "Wildflower",
         "medium": "Acrylic paint and acrylic medium on Premium cotton stretched canvas",
         "size": "60 cm x 80 cm ",
-        "price": "₪2800",
+        "price": "$800",
         "statusMsg": "",
         "desc": "",
         "location": "Israel",
@@ -21,7 +36,7 @@
         "bgWord": "Krias",
         "medium": "Acrylic Paint on Premium Cotton Stretched Canvas",
         "size": "21 cm \u00d7 30 cm each",
-        "price": "₪2100 ",
+        "price": "$600 ",
         "statusMsg": "",
         "location": "South Africa",
         "desc": "",
@@ -31,13 +46,13 @@
             "./Paintings/Yam Suf Cropped.webp",
             "./Paintings/Yam Suf.webp"
         ]
-    }, 
-    {
+    },
+     {
         "title": "Soul of The Home",
         "bgWord": "Soul",
         "medium": "Acrylic paint on Premium Stretched Cotton Canvas",
         "size": "30cm x 30 cm",
-        "price": "₪750",
+        "price": "$300",
         "statusMsg": "",
         "statusLink": "",
         "location": "Israel",
@@ -50,29 +65,12 @@
         ]
     },
     {
-        "title": "Peaceful",
-        "bgWord": "Peaceful",
-        "medium": "Acrylic paint on Premium Stretched Cotton Canvas",
-        "size": "30.5cm x 38cm",
-        "price": "₪875",
-        "statusMsg": "",
-        "statusLink": "",
-        "location": "Israel",
-        "desc": "Acrylic paint on Premium Stretched Cotton Canvas",
-        "coverImage": "./Paintings/peacfull mockup cropped.png",
-        "carouselImages": [
-            "./Paintings/peacfull mockup cropped.webp",
-            "./Paintings/peacfull mockup (1).webp",
-            "./Paintings/peacefull (1).webp"
-        ]
-    },
-        {
         "title": "Akeida",
         "bgWord": "Akeida",
         "medium": "Oil paint on Premium Cotton Stretched Canvas",
         "size": "2 pieces, 60cm x 30cm each",
         "price": "SOLD",
-        "statusMsg": "SOLD On Auction at MalkaElla.co.za",
+        "statusMsg": "Sold on Auction at MalkaElla.co.za",
         "statusLink": "https://malkaella.co.za/product/akeida/",
         "location": "South Africa",
         "desc": "Oil Paint on Premium Cotton Stretched Canvas",
@@ -85,11 +83,28 @@
         ]
     },
     {
+        "title": "Peaceful",
+        "bgWord": "Peaceful",
+        "medium": "Acrylic paint on Premium Stretched Cotton Canvas",
+        "size": "30.5cm x 38cm",
+        "price": "$250",
+        "statusMsg": "",
+        "statusLink": "",
+        "location": "Israel",
+        "desc": "Acrylic paint on Premium Stretched Cotton Canvas",
+        "coverImage": "./Paintings/peacfull mockup cropped.png",
+        "carouselImages": [
+            "./Paintings/peacfull mockup cropped.webp",
+            "./Paintings/peacfull mockup (1).webp",
+            "./Paintings/peacefull (1).webp"
+        ]
+    },
+    {
         "title": "Hidden Truth",
         "bgWord": "Hidden",
         "medium": "Oil paint on Premium Stretched Cotton Canvas",
         "size": "60cm x 84cm",
-        "price": "₪2450",
+        "price": "$700",
         "statusMsg": "",
         "statusLink": "",
         "location": "South Africa",
@@ -106,7 +121,7 @@
         "bgWord": "Pink",
         "medium": "Acrylic paint on Premium Cotton Stretched Canvas",
         "size": "20cm x 30cm",
-        "price": "₪875",
+        "price": "$250",
         "statusMsg": "",
         "statusLink": "",
         "location": "South Africa",
@@ -123,7 +138,7 @@
         "bgWord": "Deep",
         "medium": "Oil paint on Premium Cotton Stretched Canvas",
         "size": "60cm x 60cm",
-        "price": "₪2100",
+        "price": "$600",
         "statusMsg": "",
         "statusLink": "",
         "location": "South Africa",
@@ -140,7 +155,7 @@
         "bgWord": "Chavrusa",
         "medium": "Mixed Media: Acrylic paint, Charcoal and Soft Pastels on Premium Cotton Stretched Canvas",
         "size": "90cm x 90cm",
-        "price": "₪2975",
+        "price": "$850",
         "statusMsg": "",
         "statusLink": "",
         "location": "South Africa",
@@ -157,7 +172,7 @@
         "bgWord": "Purple",
         "medium": "Acrylic paint on Premium Cotton Stretched Canvas",
         "size": "30cm x 28cm",
-        "price": "₪770",
+        "price": "$220",
         "statusMsg": "",
         "statusLink": "",
         "location": "South Africa",
@@ -174,7 +189,7 @@
         "bgWord": "Shtetl",
         "medium": "Oil Paint on Premium Cotton Stretched Canvas",
         "size": "61cm x 61cm",
-        "price": "₪2275",
+        "price": "$650",
         "statusMsg": "",
         "statusLink": "",
         "location": "South Africa",
@@ -191,7 +206,7 @@
         "bgWord": "Touch",
         "medium": "Textured Acrylic paint on Premium Cotton Stretched Canvas",
         "size": "25cm x 25cm",
-        "price": "₪700",
+        "price": "$200",
         "statusMsg": "",
         "statusLink": "",
         "location": "South Africa",
